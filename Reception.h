@@ -95,7 +95,6 @@ namespace Cppreception {
 	private: System::Windows::Forms::Label^ label8;
 	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
 	private: System::Windows::Forms::GroupBox^ gbServicesFields;
-
 	private: System::Windows::Forms::Button^ btnServiceAdd;
 	private: System::Windows::Forms::Button^ btnServiceModify;
 	private: System::Windows::Forms::Button^ btnServiceDelete;
@@ -108,12 +107,25 @@ namespace Cppreception {
 	private: System::Windows::Forms::Label^ label16;
 	private: System::Windows::Forms::Label^ label15;
 	private: System::Windows::Forms::DataGridView^ dgvServices;
-
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::TextBox^ txtbxServicesSearch;
-
 	private: System::Windows::Forms::Label^ label14;
 	private: System::Windows::Forms::TabPage^ tabPage3;
+	private: System::Windows::Forms::TextBox^ txtbxSerPerurname;
+	private: System::Windows::Forms::TextBox^ txtbxSerPerName;
+	private: System::Windows::Forms::Label^ label25;
+	private: System::Windows::Forms::Label^ label24;
+	private: System::Windows::Forms::Label^ label23;
+	private: System::Windows::Forms::DataGridView^ dgvAddServices;
+	private: System::Windows::Forms::Label^ label22;
+	private: System::Windows::Forms::DataGridView^ dgvSerPer;
+	private: System::Windows::Forms::Label^ label21;
+	private: System::Windows::Forms::DataGridView^ dgvPersons;
+	private: System::Windows::Forms::Button^ btnSerPerSearch;
+	private: System::Windows::Forms::TextBox^ txtbxSerPerSearch;
+	private: System::Windows::Forms::Label^ label20;
+	private: System::Windows::Forms::Label^ label19;
+	private: System::Windows::Forms::TabPage^ tabPage4;
 	private:
 		/// <summary>
 		/// Wymagana zmienna projektanta.
@@ -128,6 +140,21 @@ namespace Cppreception {
 		void InitializeComponent(void)
 		{
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
+			this->txtbxSerPerurname = (gcnew System::Windows::Forms::TextBox());
+			this->txtbxSerPerName = (gcnew System::Windows::Forms::TextBox());
+			this->label25 = (gcnew System::Windows::Forms::Label());
+			this->label24 = (gcnew System::Windows::Forms::Label());
+			this->label23 = (gcnew System::Windows::Forms::Label());
+			this->dgvAddServices = (gcnew System::Windows::Forms::DataGridView());
+			this->label22 = (gcnew System::Windows::Forms::Label());
+			this->dgvSerPer = (gcnew System::Windows::Forms::DataGridView());
+			this->label21 = (gcnew System::Windows::Forms::Label());
+			this->dgvPersons = (gcnew System::Windows::Forms::DataGridView());
+			this->btnSerPerSearch = (gcnew System::Windows::Forms::Button());
+			this->txtbxSerPerSearch = (gcnew System::Windows::Forms::TextBox());
+			this->label20 = (gcnew System::Windows::Forms::Label());
+			this->label19 = (gcnew System::Windows::Forms::Label());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
 			this->grbxHours = (gcnew System::Windows::Forms::GroupBox());
 			this->asf = (gcnew System::Windows::Forms::GroupBox());
@@ -168,15 +195,6 @@ namespace Cppreception {
 			this->txtbxSearch = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->dgvUsers = (gcnew System::Windows::Forms::DataGridView());
-			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
-			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->btnSavePassword = (gcnew System::Windows::Forms::Button());
-			this->textbxConfirmPassword = (gcnew System::Windows::Forms::TextBox());
-			this->textbxNewPassword = (gcnew System::Windows::Forms::TextBox());
-			this->textbxOldPassword = (gcnew System::Windows::Forms::TextBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->gbServicesFields = (gcnew System::Windows::Forms::GroupBox());
 			this->btnServiceAdd = (gcnew System::Windows::Forms::Button());
@@ -194,31 +212,189 @@ namespace Cppreception {
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->txtbxServicesSearch = (gcnew System::Windows::Forms::TextBox());
 			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->btnSavePassword = (gcnew System::Windows::Forms::Button());
+			this->textbxConfirmPassword = (gcnew System::Windows::Forms::TextBox());
+			this->textbxNewPassword = (gcnew System::Windows::Forms::TextBox());
+			this->textbxOldPassword = (gcnew System::Windows::Forms::TextBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->tabControl1->SuspendLayout();
+			this->tabPage4->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvAddServices))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvSerPer))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvPersons))->BeginInit();
 			this->tabPage2->SuspendLayout();
 			this->grbxHours->SuspendLayout();
 			this->asf->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvUsers))->BeginInit();
-			this->tabPage1->SuspendLayout();
-			this->groupBox1->SuspendLayout();
 			this->tabPage3->SuspendLayout();
 			this->gbServicesFields->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvServices))->BeginInit();
+			this->tabPage1->SuspendLayout();
+			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// tabControl1
 			// 
 			this->tabControl1->Alignment = System::Windows::Forms::TabAlignment::Bottom;
+			this->tabControl1->Controls->Add(this->tabPage4);
 			this->tabControl1->Controls->Add(this->tabPage2);
-			this->tabControl1->Controls->Add(this->tabPage1);
 			this->tabControl1->Controls->Add(this->tabPage3);
+			this->tabControl1->Controls->Add(this->tabPage1);
 			this->tabControl1->Location = System::Drawing::Point(1, 12);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
 			this->tabControl1->Size = System::Drawing::Size(641, 430);
 			this->tabControl1->TabIndex = 0;
+			// 
+			// tabPage4
+			// 
+			this->tabPage4->Controls->Add(this->txtbxSerPerurname);
+			this->tabPage4->Controls->Add(this->txtbxSerPerName);
+			this->tabPage4->Controls->Add(this->label25);
+			this->tabPage4->Controls->Add(this->label24);
+			this->tabPage4->Controls->Add(this->label23);
+			this->tabPage4->Controls->Add(this->dgvAddServices);
+			this->tabPage4->Controls->Add(this->label22);
+			this->tabPage4->Controls->Add(this->dgvSerPer);
+			this->tabPage4->Controls->Add(this->label21);
+			this->tabPage4->Controls->Add(this->dgvPersons);
+			this->tabPage4->Controls->Add(this->btnSerPerSearch);
+			this->tabPage4->Controls->Add(this->txtbxSerPerSearch);
+			this->tabPage4->Controls->Add(this->label20);
+			this->tabPage4->Controls->Add(this->label19);
+			this->tabPage4->Location = System::Drawing::Point(4, 4);
+			this->tabPage4->Name = L"tabPage4";
+			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage4->Size = System::Drawing::Size(633, 404);
+			this->tabPage4->TabIndex = 3;
+			this->tabPage4->Text = L"Pracownik - Us³ugi";
+			this->tabPage4->UseVisualStyleBackColor = true;
+			// 
+			// txtbxSerPerurname
+			// 
+			this->txtbxSerPerurname->Location = System::Drawing::Point(69, 109);
+			this->txtbxSerPerurname->Name = L"txtbxSerPerurname";
+			this->txtbxSerPerurname->Size = System::Drawing::Size(100, 20);
+			this->txtbxSerPerurname->TabIndex = 13;
+			// 
+			// txtbxSerPerName
+			// 
+			this->txtbxSerPerName->Location = System::Drawing::Point(69, 71);
+			this->txtbxSerPerName->Name = L"txtbxSerPerName";
+			this->txtbxSerPerName->Size = System::Drawing::Size(100, 20);
+			this->txtbxSerPerName->TabIndex = 12;
+			// 
+			// label25
+			// 
+			this->label25->AutoSize = true;
+			this->label25->Location = System::Drawing::Point(7, 109);
+			this->label25->Name = L"label25";
+			this->label25->Size = System::Drawing::Size(53, 13);
+			this->label25->TabIndex = 11;
+			this->label25->Text = L"Nazwisko";
+			// 
+			// label24
+			// 
+			this->label24->AutoSize = true;
+			this->label24->Location = System::Drawing::Point(7, 71);
+			this->label24->Name = L"label24";
+			this->label24->Size = System::Drawing::Size(26, 13);
+			this->label24->TabIndex = 10;
+			this->label24->Text = L"Imiê";
+			// 
+			// label23
+			// 
+			this->label23->AutoSize = true;
+			this->label23->Location = System::Drawing::Point(6, 185);
+			this->label23->Name = L"label23";
+			this->label23->Size = System::Drawing::Size(73, 13);
+			this->label23->TabIndex = 9;
+			this->label23->Text = L"Dodaj Us³ugê";
+			// 
+			// dgvAddServices
+			// 
+			this->dgvAddServices->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvAddServices->Location = System::Drawing::Point(3, 201);
+			this->dgvAddServices->Name = L"dgvAddServices";
+			this->dgvAddServices->Size = System::Drawing::Size(309, 197);
+			this->dgvAddServices->TabIndex = 8;
+			this->dgvAddServices->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvAddServices_CellClick);
+			// 
+			// label22
+			// 
+			this->label22->AutoSize = true;
+			this->label22->Location = System::Drawing::Point(324, 185);
+			this->label22->Name = L"label22";
+			this->label22->Size = System::Drawing::Size(97, 13);
+			this->label22->TabIndex = 7;
+			this->label22->Text = L"Us³ugi Pracownika";
+			// 
+			// dgvSerPer
+			// 
+			this->dgvSerPer->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvSerPer->Location = System::Drawing::Point(327, 201);
+			this->dgvSerPer->Name = L"dgvSerPer";
+			this->dgvSerPer->Size = System::Drawing::Size(303, 197);
+			this->dgvSerPer->TabIndex = 6;
+			this->dgvSerPer->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvSerPer_CellClick);
+			// 
+			// label21
+			// 
+			this->label21->AutoSize = true;
+			this->label21->Location = System::Drawing::Point(324, 6);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(65, 13);
+			this->label21->TabIndex = 5;
+			this->label21->Text = L"Pracownicy:";
+			// 
+			// dgvPersons
+			// 
+			this->dgvPersons->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvPersons->Location = System::Drawing::Point(327, 22);
+			this->dgvPersons->Name = L"dgvPersons";
+			this->dgvPersons->Size = System::Drawing::Size(306, 160);
+			this->dgvPersons->TabIndex = 4;
+			this->dgvPersons->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvPersons_CellClick);
+			// 
+			// btnSerPerSearch
+			// 
+			this->btnSerPerSearch->Location = System::Drawing::Point(175, 22);
+			this->btnSerPerSearch->Name = L"btnSerPerSearch";
+			this->btnSerPerSearch->Size = System::Drawing::Size(75, 23);
+			this->btnSerPerSearch->TabIndex = 3;
+			this->btnSerPerSearch->Text = L"Szukaj";
+			this->btnSerPerSearch->UseVisualStyleBackColor = true;
+			this->btnSerPerSearch->Click += gcnew System::EventHandler(this, &Reception::BtnSerPerSearch_Click);
+			// 
+			// txtbxSerPerSearch
+			// 
+			this->txtbxSerPerSearch->Location = System::Drawing::Point(69, 25);
+			this->txtbxSerPerSearch->Name = L"txtbxSerPerSearch";
+			this->txtbxSerPerSearch->Size = System::Drawing::Size(100, 20);
+			this->txtbxSerPerSearch->TabIndex = 2;
+			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Location = System::Drawing::Point(53, 28);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(0, 13);
+			this->label20->TabIndex = 1;
+			// 
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Location = System::Drawing::Point(6, 28);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(57, 13);
+			this->label19->TabIndex = 0;
+			this->label19->Text = L"Pracownik";
 			// 
 			// tabPage2
 			// 
@@ -603,95 +779,6 @@ namespace Cppreception {
 			this->dgvUsers->TabIndex = 0;
 			this->dgvUsers->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvUsers_CellClick);
 			// 
-			// tabPage1
-			// 
-			this->tabPage1->Controls->Add(this->groupBox1);
-			this->tabPage1->Location = System::Drawing::Point(4, 4);
-			this->tabPage1->Name = L"tabPage1";
-			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(633, 404);
-			this->tabPage1->TabIndex = 0;
-			this->tabPage1->Text = L"Zmiana has³a";
-			this->tabPage1->UseVisualStyleBackColor = true;
-			// 
-			// groupBox1
-			// 
-			this->groupBox1->Controls->Add(this->btnSavePassword);
-			this->groupBox1->Controls->Add(this->textbxConfirmPassword);
-			this->groupBox1->Controls->Add(this->textbxNewPassword);
-			this->groupBox1->Controls->Add(this->textbxOldPassword);
-			this->groupBox1->Controls->Add(this->label3);
-			this->groupBox1->Controls->Add(this->label2);
-			this->groupBox1->Controls->Add(this->label1);
-			this->groupBox1->Location = System::Drawing::Point(104, 83);
-			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(424, 238);
-			this->groupBox1->TabIndex = 2;
-			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Zmiana has³a";
-			// 
-			// btnSavePassword
-			// 
-			this->btnSavePassword->Enabled = false;
-			this->btnSavePassword->Location = System::Drawing::Point(206, 152);
-			this->btnSavePassword->Name = L"btnSavePassword";
-			this->btnSavePassword->Size = System::Drawing::Size(75, 23);
-			this->btnSavePassword->TabIndex = 6;
-			this->btnSavePassword->Text = L"Zmieñ";
-			this->btnSavePassword->UseVisualStyleBackColor = true;
-			this->btnSavePassword->Click += gcnew System::EventHandler(this, &Reception::BtnSavePassword_Click);
-			// 
-			// textbxConfirmPassword
-			// 
-			this->textbxConfirmPassword->Location = System::Drawing::Point(206, 113);
-			this->textbxConfirmPassword->Name = L"textbxConfirmPassword";
-			this->textbxConfirmPassword->Size = System::Drawing::Size(100, 20);
-			this->textbxConfirmPassword->TabIndex = 5;
-			this->textbxConfirmPassword->TextChanged += gcnew System::EventHandler(this, &Reception::TextbxConfirmPassword_TextChanged);
-			// 
-			// textbxNewPassword
-			// 
-			this->textbxNewPassword->Location = System::Drawing::Point(206, 75);
-			this->textbxNewPassword->Name = L"textbxNewPassword";
-			this->textbxNewPassword->Size = System::Drawing::Size(100, 20);
-			this->textbxNewPassword->TabIndex = 4;
-			this->textbxNewPassword->TextChanged += gcnew System::EventHandler(this, &Reception::TextbxNewPassword_TextChanged);
-			// 
-			// textbxOldPassword
-			// 
-			this->textbxOldPassword->Location = System::Drawing::Point(206, 38);
-			this->textbxOldPassword->Name = L"textbxOldPassword";
-			this->textbxOldPassword->Size = System::Drawing::Size(100, 20);
-			this->textbxOldPassword->TabIndex = 3;
-			this->textbxOldPassword->TextChanged += gcnew System::EventHandler(this, &Reception::TextbxOldPassword_TextChanged);
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(47, 75);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(65, 13);
-			this->label3->TabIndex = 2;
-			this->label3->Text = L"Nowe has³o";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(47, 113);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(83, 13);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"PotwierdŸ has³o";
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(47, 38);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(62, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Stare has³o";
-			// 
 			// tabPage3
 			// 
 			this->tabPage3->Controls->Add(this->gbServicesFields);
@@ -860,6 +947,95 @@ namespace Cppreception {
 			this->label14->TabIndex = 0;
 			this->label14->Text = L"Zabieg: ";
 			// 
+			// tabPage1
+			// 
+			this->tabPage1->Controls->Add(this->groupBox1);
+			this->tabPage1->Location = System::Drawing::Point(4, 4);
+			this->tabPage1->Name = L"tabPage1";
+			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage1->Size = System::Drawing::Size(633, 404);
+			this->tabPage1->TabIndex = 0;
+			this->tabPage1->Text = L"Zmiana has³a";
+			this->tabPage1->UseVisualStyleBackColor = true;
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->btnSavePassword);
+			this->groupBox1->Controls->Add(this->textbxConfirmPassword);
+			this->groupBox1->Controls->Add(this->textbxNewPassword);
+			this->groupBox1->Controls->Add(this->textbxOldPassword);
+			this->groupBox1->Controls->Add(this->label3);
+			this->groupBox1->Controls->Add(this->label2);
+			this->groupBox1->Controls->Add(this->label1);
+			this->groupBox1->Location = System::Drawing::Point(104, 83);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(424, 238);
+			this->groupBox1->TabIndex = 2;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Zmiana has³a";
+			// 
+			// btnSavePassword
+			// 
+			this->btnSavePassword->Enabled = false;
+			this->btnSavePassword->Location = System::Drawing::Point(206, 152);
+			this->btnSavePassword->Name = L"btnSavePassword";
+			this->btnSavePassword->Size = System::Drawing::Size(75, 23);
+			this->btnSavePassword->TabIndex = 6;
+			this->btnSavePassword->Text = L"Zmieñ";
+			this->btnSavePassword->UseVisualStyleBackColor = true;
+			this->btnSavePassword->Click += gcnew System::EventHandler(this, &Reception::BtnSavePassword_Click);
+			// 
+			// textbxConfirmPassword
+			// 
+			this->textbxConfirmPassword->Location = System::Drawing::Point(206, 113);
+			this->textbxConfirmPassword->Name = L"textbxConfirmPassword";
+			this->textbxConfirmPassword->Size = System::Drawing::Size(100, 20);
+			this->textbxConfirmPassword->TabIndex = 5;
+			this->textbxConfirmPassword->TextChanged += gcnew System::EventHandler(this, &Reception::TextbxConfirmPassword_TextChanged);
+			// 
+			// textbxNewPassword
+			// 
+			this->textbxNewPassword->Location = System::Drawing::Point(206, 75);
+			this->textbxNewPassword->Name = L"textbxNewPassword";
+			this->textbxNewPassword->Size = System::Drawing::Size(100, 20);
+			this->textbxNewPassword->TabIndex = 4;
+			this->textbxNewPassword->TextChanged += gcnew System::EventHandler(this, &Reception::TextbxNewPassword_TextChanged);
+			// 
+			// textbxOldPassword
+			// 
+			this->textbxOldPassword->Location = System::Drawing::Point(206, 38);
+			this->textbxOldPassword->Name = L"textbxOldPassword";
+			this->textbxOldPassword->Size = System::Drawing::Size(100, 20);
+			this->textbxOldPassword->TabIndex = 3;
+			this->textbxOldPassword->TextChanged += gcnew System::EventHandler(this, &Reception::TextbxOldPassword_TextChanged);
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(47, 75);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(65, 13);
+			this->label3->TabIndex = 2;
+			this->label3->Text = L"Nowe has³o";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(47, 113);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(83, 13);
+			this->label2->TabIndex = 1;
+			this->label2->Text = L"PotwierdŸ has³o";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(47, 38);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(62, 13);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Stare has³o";
+			// 
 			// Reception
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -870,6 +1046,11 @@ namespace Cppreception {
 			this->Text = L"Reception";
 			this->Load += gcnew System::EventHandler(this, &Reception::Reception_Load);
 			this->tabControl1->ResumeLayout(false);
+			this->tabPage4->ResumeLayout(false);
+			this->tabPage4->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvAddServices))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvSerPer))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvPersons))->EndInit();
 			this->tabPage2->ResumeLayout(false);
 			this->tabPage2->PerformLayout();
 			this->grbxHours->ResumeLayout(false);
@@ -878,19 +1059,19 @@ namespace Cppreception {
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvUsers))->EndInit();
-			this->tabPage1->ResumeLayout(false);
-			this->groupBox1->ResumeLayout(false);
-			this->groupBox1->PerformLayout();
 			this->tabPage3->ResumeLayout(false);
 			this->tabPage3->PerformLayout();
 			this->gbServicesFields->ResumeLayout(false);
 			this->gbServicesFields->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvServices))->EndInit();
+			this->tabPage1->ResumeLayout(false);
+			this->groupBox1->ResumeLayout(false);
+			this->groupBox1->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	int recordId;
+	int recordId, serviceId;
 	private: System::Void Reception_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: Void btnChangeEnable() {
@@ -1214,6 +1395,82 @@ private: System::Void BtnServiceModify_Click(System::Object^ sender, System::Eve
 private: System::Void BtnServiceDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ queryString = "DELETE FROM `services` WHERE `services`.`services_id` = " + this->recordId + ";";
 	if (MessageBox::Show("Jesteœ pewien, ¿e chcesz usun¹æ wybran¹ us³ugê?", "UWAGA!!!", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) this->addUpdateRemoveServicesTransaction(queryString, ActionType::DELETE);
+}
+private: System::Void BtnSerPerSearch_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryString = "SELECT user_id, user_login AS Login, name AS imie, surname AS nazwisko, employee AS Pracownik FROM user where concat(name, ' ', surname, user_login, employee) LIKE '%" + this->txtbxSerPerSearch->Text + "%' ORDER BY surname;";
+	this->refreshDataGrid(queryString, this->dgvPersons);
+}
+private: System::Void DgvPersons_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (e->RowIndex >= 0) {
+		this->recordId = Convert::ToInt32(this->dgvPersons->Rows[e->RowIndex]->Cells[0]->Value);
+		this->txtbxSerPerName->Text = this->dgvPersons->Rows[e->RowIndex]->Cells["imie"]->Value->ToString();
+		this->txtbxSerPerurname->Text = this->dgvPersons->Rows[e->RowIndex]->Cells["nazwisko"]->Value->ToString();
+
+		String^ queryString = "SELECT `services`.`services_id`, `services`.`name`, `services`.`price`, `services`.time FROM services, user_service WHERE `services`.`services_id` = `user_service`.`service_id` AND `user_service`.`user_id` = " + this->recordId + " ORDER BY name;";
+		this->refreshDataGrid(queryString, this->dgvSerPer);
+
+		String^ queryStringPer = "SELECT * FROM services ORDER BY name;";
+		this->refreshDataGrid(queryStringPer, this->dgvAddServices);
+	}
+}
+
+private: Void operationOnDataGridCellClick(
+	System::Windows::Forms::DataGridViewCellEventArgs^ e,
+	System::Windows::Forms::DataGridView^ grid,
+	String^ messageBoxHeader,
+	String^ messageBoxContent,
+	ActionType queryType
+	) {
+	if (e->RowIndex >= 0) {
+		this->serviceId = Convert::ToInt32(grid->Rows[e->RowIndex]->Cells[0]->Value);
+
+		if (MessageBox::Show(
+			messageBoxContent,
+			messageBoxHeader,
+			MessageBoxButtons::YesNo,
+			MessageBoxIcon::Question
+		) == System::Windows::Forms::DialogResult::Yes) {
+			String^ queryString;
+			switch (queryType) {
+			case ActionType::ADD:
+				queryString = "INSERT INTO user_service SET user_id = " + this->recordId + ", service_id = " + this->serviceId + ";";
+				break;
+			case ActionType::DELETE:
+				queryString = "DELETE FROM user_service WHERE user_id = " + this->recordId + " AND service_id = " + this->serviceId + ";";
+				break;
+			}
+			this->addOrRemovePersonServices(queryString);
+		}
+	}
+}
+private: System::Void DgvAddServices_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	this->operationOnDataGridCellClick(e, this->dgvAddServices, "Uwaga!", "Dodac us³ugê pracownikowi?", ActionType::ADD);
+}
+private: Void addOrRemovePersonServices(String^ queryString) {
+	MySqlConnection^ connect = gcnew MySqlConnection(this->config);
+	MySqlCommand^ query = connect->CreateCommand();
+	MySqlTransaction^ transaction;
+	connect->Open();
+	transaction = connect->BeginTransaction(IsolationLevel::ReadCommitted);
+	query->Connection = connect;
+	query->Transaction = transaction;
+	try {
+		query->CommandText = queryString;
+		query->ExecuteNonQuery();
+		MySqlDataReader^ result;
+		transaction->Commit();
+	}
+	catch (Exception^ e) {
+		MessageBox::Show(e->Message);
+		transaction->Rollback();
+	}
+	connect->Close();
+	String^ queryStringReload = "SELECT `services`.`services_id`, `services`.`name`, `services`.`price`, `services`.time FROM services, user_service WHERE `services`.`services_id` = `user_service`.`service_id` AND `user_service`.`user_id` = " + this->recordId + " ORDER BY name;";
+	this->refreshDataGrid(queryStringReload, this->dgvSerPer);
+}
+
+private: System::Void DgvSerPer_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	this->operationOnDataGridCellClick(e, this->dgvSerPer, "Uwaga!!!", "Usun¹æ pracownikowi dan¹ us³ugê?", ActionType::DELETE);
 }
 };
 }
