@@ -22,9 +22,10 @@ namespace Cppreception {
 	public ref class Reception : public System::Windows::Forms::Form
 	{
 	public:
-		int ID;
-		int employeeType;
+		int ID, recordId, serviceId, clientId, employeeId, employeeType;
 		String^ config = L"datasource=localhost; port=3306; username=root; password=''; database=reception;";
+		String^ choosenDate;
+		String^ choosenHour;
 		Reception(int userID)
 		{
 			InitializeComponent();
@@ -126,6 +127,55 @@ namespace Cppreception {
 	private: System::Windows::Forms::Label^ label20;
 	private: System::Windows::Forms::Label^ label19;
 	private: System::Windows::Forms::TabPage^ tabPage4;
+	private: System::Windows::Forms::Button^ btnClientsAdd;
+	private: System::Windows::Forms::Button^ btnClientsModify;
+	private: System::Windows::Forms::Button^ btnClientsDelete;
+	private: System::Windows::Forms::GroupBox^ gbClientsData;
+	private: System::Windows::Forms::MaskedTextBox^ txtbxClientNumber;
+	private: System::Windows::Forms::MaskedTextBox^ txtbxClientPostZIP;
+	private: System::Windows::Forms::TextBox^ txtbxClientCity;
+	private: System::Windows::Forms::Label^ label31;
+	private: System::Windows::Forms::Label^ label32;
+	private: System::Windows::Forms::Label^ label33;
+	private: System::Windows::Forms::TextBox^ txtbxClientStreet;
+	private: System::Windows::Forms::Label^ label34;
+	private: System::Windows::Forms::TextBox^ txtbxClientPhone;
+	private: System::Windows::Forms::Label^ label30;
+	private: System::Windows::Forms::TextBox^ txtbxClientEmail;
+	private: System::Windows::Forms::Label^ label29;
+	private: System::Windows::Forms::TextBox^ txtbxClientSurname;
+	private: System::Windows::Forms::Label^ label28;
+	private: System::Windows::Forms::TextBox^ txtbxClientName;
+	private: System::Windows::Forms::Label^ label27;
+	private: System::Windows::Forms::DataGridView^ dgvClients;
+	private: System::Windows::Forms::Button^ btnClientsSearch;
+	private: System::Windows::Forms::TextBox^ txtbxClientsSearch;
+	private: System::Windows::Forms::Label^ label26;
+	private: System::Windows::Forms::TabPage^ tabPage6;
+	private: System::Windows::Forms::TabPage^ tabPage5;
+	private: System::Windows::Forms::Button^ btnReservationDelete;
+	private: System::Windows::Forms::Button^ btnReservationModify;
+	private: System::Windows::Forms::Button^ btnReservationAdd;
+	private: System::Windows::Forms::Label^ label40;
+	private: System::Windows::Forms::Label^ label39;
+	private: System::Windows::Forms::Label^ label38;
+	private: System::Windows::Forms::TextBox^ txtbxReservationSeTime;
+	private: System::Windows::Forms::TextBox^ txtbxReservationSetService;
+	private: System::Windows::Forms::TextBox^ txtbxReservationSetClient;
+	private: System::Windows::Forms::DataGridView^ dgvReservationEmployees;
+	private: System::Windows::Forms::Button^ btnReservationEmployee;
+	private: System::Windows::Forms::TextBox^ txtbxReservationEmployee;
+	private: System::Windows::Forms::Label^ label37;
+	private: System::Windows::Forms::MonthCalendar^ monthCalendar1;
+	private: System::Windows::Forms::GroupBox^ gbReservationHours;
+	private: System::Windows::Forms::DataGridView^ dgvReservationClients;
+	private: System::Windows::Forms::Button^ btnReservationClients;
+	private: System::Windows::Forms::TextBox^ txtbxReservationClients;
+	private: System::Windows::Forms::Label^ label36;
+	private: System::Windows::Forms::DataGridView^ dgvReservationServices;
+	private: System::Windows::Forms::Button^ btnReservationService;
+	private: System::Windows::Forms::TextBox^ txtbxReservationService;
+	private: System::Windows::Forms::Label^ label35;
 	private:
 		/// <summary>
 		/// Wymagana zmienna projektanta.
@@ -140,6 +190,55 @@ namespace Cppreception {
 		void InitializeComponent(void)
 		{
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage6 = (gcnew System::Windows::Forms::TabPage());
+			this->btnReservationDelete = (gcnew System::Windows::Forms::Button());
+			this->btnReservationModify = (gcnew System::Windows::Forms::Button());
+			this->btnReservationAdd = (gcnew System::Windows::Forms::Button());
+			this->label40 = (gcnew System::Windows::Forms::Label());
+			this->label39 = (gcnew System::Windows::Forms::Label());
+			this->label38 = (gcnew System::Windows::Forms::Label());
+			this->txtbxReservationSeTime = (gcnew System::Windows::Forms::TextBox());
+			this->txtbxReservationSetService = (gcnew System::Windows::Forms::TextBox());
+			this->txtbxReservationSetClient = (gcnew System::Windows::Forms::TextBox());
+			this->dgvReservationEmployees = (gcnew System::Windows::Forms::DataGridView());
+			this->btnReservationEmployee = (gcnew System::Windows::Forms::Button());
+			this->txtbxReservationEmployee = (gcnew System::Windows::Forms::TextBox());
+			this->label37 = (gcnew System::Windows::Forms::Label());
+			this->monthCalendar1 = (gcnew System::Windows::Forms::MonthCalendar());
+			this->gbReservationHours = (gcnew System::Windows::Forms::GroupBox());
+			this->dgvReservationClients = (gcnew System::Windows::Forms::DataGridView());
+			this->btnReservationClients = (gcnew System::Windows::Forms::Button());
+			this->txtbxReservationClients = (gcnew System::Windows::Forms::TextBox());
+			this->label36 = (gcnew System::Windows::Forms::Label());
+			this->dgvReservationServices = (gcnew System::Windows::Forms::DataGridView());
+			this->btnReservationService = (gcnew System::Windows::Forms::Button());
+			this->txtbxReservationService = (gcnew System::Windows::Forms::TextBox());
+			this->label35 = (gcnew System::Windows::Forms::Label());
+			this->tabPage5 = (gcnew System::Windows::Forms::TabPage());
+			this->btnClientsAdd = (gcnew System::Windows::Forms::Button());
+			this->btnClientsModify = (gcnew System::Windows::Forms::Button());
+			this->btnClientsDelete = (gcnew System::Windows::Forms::Button());
+			this->gbClientsData = (gcnew System::Windows::Forms::GroupBox());
+			this->txtbxClientNumber = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->txtbxClientPostZIP = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->txtbxClientCity = (gcnew System::Windows::Forms::TextBox());
+			this->label31 = (gcnew System::Windows::Forms::Label());
+			this->label32 = (gcnew System::Windows::Forms::Label());
+			this->label33 = (gcnew System::Windows::Forms::Label());
+			this->txtbxClientStreet = (gcnew System::Windows::Forms::TextBox());
+			this->label34 = (gcnew System::Windows::Forms::Label());
+			this->txtbxClientPhone = (gcnew System::Windows::Forms::TextBox());
+			this->label30 = (gcnew System::Windows::Forms::Label());
+			this->txtbxClientEmail = (gcnew System::Windows::Forms::TextBox());
+			this->label29 = (gcnew System::Windows::Forms::Label());
+			this->txtbxClientSurname = (gcnew System::Windows::Forms::TextBox());
+			this->label28 = (gcnew System::Windows::Forms::Label());
+			this->txtbxClientName = (gcnew System::Windows::Forms::TextBox());
+			this->label27 = (gcnew System::Windows::Forms::Label());
+			this->dgvClients = (gcnew System::Windows::Forms::DataGridView());
+			this->btnClientsSearch = (gcnew System::Windows::Forms::Button());
+			this->txtbxClientsSearch = (gcnew System::Windows::Forms::TextBox());
+			this->label26 = (gcnew System::Windows::Forms::Label());
 			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
 			this->txtbxSerPerurname = (gcnew System::Windows::Forms::TextBox());
 			this->txtbxSerPerName = (gcnew System::Windows::Forms::TextBox());
@@ -223,6 +322,13 @@ namespace Cppreception {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->tabControl1->SuspendLayout();
+			this->tabPage6->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationEmployees))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationClients))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationServices))->BeginInit();
+			this->tabPage5->SuspendLayout();
+			this->gbClientsData->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvClients))->BeginInit();
 			this->tabPage4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvAddServices))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvSerPer))->BeginInit();
@@ -242,6 +348,8 @@ namespace Cppreception {
 			// tabControl1
 			// 
 			this->tabControl1->Alignment = System::Windows::Forms::TabAlignment::Bottom;
+			this->tabControl1->Controls->Add(this->tabPage6);
+			this->tabControl1->Controls->Add(this->tabPage5);
 			this->tabControl1->Controls->Add(this->tabPage4);
 			this->tabControl1->Controls->Add(this->tabPage2);
 			this->tabControl1->Controls->Add(this->tabPage3);
@@ -251,6 +359,477 @@ namespace Cppreception {
 			this->tabControl1->SelectedIndex = 0;
 			this->tabControl1->Size = System::Drawing::Size(641, 430);
 			this->tabControl1->TabIndex = 0;
+			// 
+			// tabPage6
+			// 
+			this->tabPage6->Controls->Add(this->btnReservationDelete);
+			this->tabPage6->Controls->Add(this->btnReservationModify);
+			this->tabPage6->Controls->Add(this->btnReservationAdd);
+			this->tabPage6->Controls->Add(this->label40);
+			this->tabPage6->Controls->Add(this->label39);
+			this->tabPage6->Controls->Add(this->label38);
+			this->tabPage6->Controls->Add(this->txtbxReservationSeTime);
+			this->tabPage6->Controls->Add(this->txtbxReservationSetService);
+			this->tabPage6->Controls->Add(this->txtbxReservationSetClient);
+			this->tabPage6->Controls->Add(this->dgvReservationEmployees);
+			this->tabPage6->Controls->Add(this->btnReservationEmployee);
+			this->tabPage6->Controls->Add(this->txtbxReservationEmployee);
+			this->tabPage6->Controls->Add(this->label37);
+			this->tabPage6->Controls->Add(this->monthCalendar1);
+			this->tabPage6->Controls->Add(this->gbReservationHours);
+			this->tabPage6->Controls->Add(this->dgvReservationClients);
+			this->tabPage6->Controls->Add(this->btnReservationClients);
+			this->tabPage6->Controls->Add(this->txtbxReservationClients);
+			this->tabPage6->Controls->Add(this->label36);
+			this->tabPage6->Controls->Add(this->dgvReservationServices);
+			this->tabPage6->Controls->Add(this->btnReservationService);
+			this->tabPage6->Controls->Add(this->txtbxReservationService);
+			this->tabPage6->Controls->Add(this->label35);
+			this->tabPage6->Location = System::Drawing::Point(4, 4);
+			this->tabPage6->Name = L"tabPage6";
+			this->tabPage6->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage6->Size = System::Drawing::Size(633, 404);
+			this->tabPage6->TabIndex = 5;
+			this->tabPage6->Text = L"Rezerwacje";
+			this->tabPage6->UseVisualStyleBackColor = true;
+			// 
+			// btnReservationDelete
+			// 
+			this->btnReservationDelete->Location = System::Drawing::Point(12, 366);
+			this->btnReservationDelete->Name = L"btnReservationDelete";
+			this->btnReservationDelete->Size = System::Drawing::Size(157, 23);
+			this->btnReservationDelete->TabIndex = 26;
+			this->btnReservationDelete->Text = L"Usuñ";
+			this->btnReservationDelete->UseVisualStyleBackColor = true;
+			// 
+			// btnReservationModify
+			// 
+			this->btnReservationModify->Location = System::Drawing::Point(12, 337);
+			this->btnReservationModify->Name = L"btnReservationModify";
+			this->btnReservationModify->Size = System::Drawing::Size(157, 23);
+			this->btnReservationModify->TabIndex = 25;
+			this->btnReservationModify->Text = L"Modyfikuj";
+			this->btnReservationModify->UseVisualStyleBackColor = true;
+			// 
+			// btnReservationAdd
+			// 
+			this->btnReservationAdd->Location = System::Drawing::Point(12, 308);
+			this->btnReservationAdd->Name = L"btnReservationAdd";
+			this->btnReservationAdd->Size = System::Drawing::Size(157, 23);
+			this->btnReservationAdd->TabIndex = 24;
+			this->btnReservationAdd->Text = L"Dodaj";
+			this->btnReservationAdd->UseVisualStyleBackColor = true;
+			this->btnReservationAdd->Click += gcnew System::EventHandler(this, &Reception::BtnReservationAdd_Click);
+			// 
+			// label40
+			// 
+			this->label40->AutoSize = true;
+			this->label40->Location = System::Drawing::Point(9, 273);
+			this->label40->Name = L"label40";
+			this->label40->Size = System::Drawing::Size(39, 13);
+			this->label40->TabIndex = 23;
+			this->label40->Text = L"Termin";
+			// 
+			// label39
+			// 
+			this->label39->AutoSize = true;
+			this->label39->Location = System::Drawing::Point(9, 241);
+			this->label39->Name = L"label39";
+			this->label39->Size = System::Drawing::Size(42, 13);
+			this->label39->TabIndex = 22;
+			this->label39->Text = L"Us³uga";
+			// 
+			// label38
+			// 
+			this->label38->AutoSize = true;
+			this->label38->Location = System::Drawing::Point(9, 211);
+			this->label38->Name = L"label38";
+			this->label38->Size = System::Drawing::Size(33, 13);
+			this->label38->TabIndex = 21;
+			this->label38->Text = L"Klient";
+			// 
+			// txtbxReservationSeTime
+			// 
+			this->txtbxReservationSeTime->Location = System::Drawing::Point(69, 269);
+			this->txtbxReservationSeTime->Name = L"txtbxReservationSeTime";
+			this->txtbxReservationSeTime->Size = System::Drawing::Size(100, 20);
+			this->txtbxReservationSeTime->TabIndex = 20;
+			// 
+			// txtbxReservationSetService
+			// 
+			this->txtbxReservationSetService->Location = System::Drawing::Point(69, 238);
+			this->txtbxReservationSetService->Name = L"txtbxReservationSetService";
+			this->txtbxReservationSetService->Size = System::Drawing::Size(100, 20);
+			this->txtbxReservationSetService->TabIndex = 19;
+			// 
+			// txtbxReservationSetClient
+			// 
+			this->txtbxReservationSetClient->Location = System::Drawing::Point(69, 205);
+			this->txtbxReservationSetClient->Name = L"txtbxReservationSetClient";
+			this->txtbxReservationSetClient->Size = System::Drawing::Size(100, 20);
+			this->txtbxReservationSetClient->TabIndex = 18;
+			// 
+			// dgvReservationEmployees
+			// 
+			this->dgvReservationEmployees->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvReservationEmployees->Location = System::Drawing::Point(381, 293);
+			this->dgvReservationEmployees->Name = L"dgvReservationEmployees";
+			this->dgvReservationEmployees->Size = System::Drawing::Size(240, 105);
+			this->dgvReservationEmployees->TabIndex = 17;
+			this->dgvReservationEmployees->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvReservationEmployees_CellClick);
+			// 
+			// btnReservationEmployee
+			// 
+			this->btnReservationEmployee->Location = System::Drawing::Point(546, 264);
+			this->btnReservationEmployee->Name = L"btnReservationEmployee";
+			this->btnReservationEmployee->Size = System::Drawing::Size(75, 23);
+			this->btnReservationEmployee->TabIndex = 16;
+			this->btnReservationEmployee->Text = L"Szukaj";
+			this->btnReservationEmployee->UseVisualStyleBackColor = true;
+			this->btnReservationEmployee->Click += gcnew System::EventHandler(this, &Reception::BtnReservationEmployee_Click);
+			// 
+			// txtbxReservationEmployee
+			// 
+			this->txtbxReservationEmployee->Location = System::Drawing::Point(440, 266);
+			this->txtbxReservationEmployee->Name = L"txtbxReservationEmployee";
+			this->txtbxReservationEmployee->Size = System::Drawing::Size(100, 20);
+			this->txtbxReservationEmployee->TabIndex = 15;
+			// 
+			// label37
+			// 
+			this->label37->AutoSize = true;
+			this->label37->Location = System::Drawing::Point(382, 269);
+			this->label37->Name = L"label37";
+			this->label37->Size = System::Drawing::Size(57, 13);
+			this->label37->TabIndex = 14;
+			this->label37->Text = L"Pracownik";
+			// 
+			// monthCalendar1
+			// 
+			this->monthCalendar1->Location = System::Drawing::Point(9, 16);
+			this->monthCalendar1->Name = L"monthCalendar1";
+			this->monthCalendar1->TabIndex = 9;
+			this->monthCalendar1->DateSelected += gcnew System::Windows::Forms::DateRangeEventHandler(this, &Reception::MonthCalendar1_DateSelected);
+			// 
+			// gbReservationHours
+			// 
+			this->gbReservationHours->Location = System::Drawing::Point(175, 13);
+			this->gbReservationHours->Name = L"gbReservationHours";
+			this->gbReservationHours->Size = System::Drawing::Size(200, 385);
+			this->gbReservationHours->TabIndex = 8;
+			this->gbReservationHours->TabStop = false;
+			this->gbReservationHours->Text = L"Godziny";
+			// 
+			// dgvReservationClients
+			// 
+			this->dgvReservationClients->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvReservationClients->Location = System::Drawing::Point(381, 169);
+			this->dgvReservationClients->Name = L"dgvReservationClients";
+			this->dgvReservationClients->Size = System::Drawing::Size(240, 89);
+			this->dgvReservationClients->TabIndex = 7;
+			this->dgvReservationClients->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvReservationClients_CellClick);
+			// 
+			// btnReservationClients
+			// 
+			this->btnReservationClients->Location = System::Drawing::Point(546, 140);
+			this->btnReservationClients->Name = L"btnReservationClients";
+			this->btnReservationClients->Size = System::Drawing::Size(75, 23);
+			this->btnReservationClients->TabIndex = 6;
+			this->btnReservationClients->Text = L"Szukaj";
+			this->btnReservationClients->UseVisualStyleBackColor = true;
+			this->btnReservationClients->Click += gcnew System::EventHandler(this, &Reception::BtnReservationClients_Click);
+			// 
+			// txtbxReservationClients
+			// 
+			this->txtbxReservationClients->Location = System::Drawing::Point(440, 142);
+			this->txtbxReservationClients->Name = L"txtbxReservationClients";
+			this->txtbxReservationClients->Size = System::Drawing::Size(100, 20);
+			this->txtbxReservationClients->TabIndex = 5;
+			// 
+			// label36
+			// 
+			this->label36->AutoSize = true;
+			this->label36->Location = System::Drawing::Point(382, 145);
+			this->label36->Name = L"label36";
+			this->label36->Size = System::Drawing::Size(38, 13);
+			this->label36->TabIndex = 4;
+			this->label36->Text = L"Klienci";
+			// 
+			// dgvReservationServices
+			// 
+			this->dgvReservationServices->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvReservationServices->Location = System::Drawing::Point(381, 40);
+			this->dgvReservationServices->Name = L"dgvReservationServices";
+			this->dgvReservationServices->Size = System::Drawing::Size(240, 94);
+			this->dgvReservationServices->TabIndex = 3;
+			this->dgvReservationServices->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvReservationServices_CellClick);
+			// 
+			// btnReservationService
+			// 
+			this->btnReservationService->Location = System::Drawing::Point(546, 11);
+			this->btnReservationService->Name = L"btnReservationService";
+			this->btnReservationService->Size = System::Drawing::Size(75, 23);
+			this->btnReservationService->TabIndex = 2;
+			this->btnReservationService->Text = L"Szukaj";
+			this->btnReservationService->UseVisualStyleBackColor = true;
+			this->btnReservationService->Click += gcnew System::EventHandler(this, &Reception::BtnReservationService_Click);
+			// 
+			// txtbxReservationService
+			// 
+			this->txtbxReservationService->Location = System::Drawing::Point(440, 13);
+			this->txtbxReservationService->Name = L"txtbxReservationService";
+			this->txtbxReservationService->Size = System::Drawing::Size(100, 20);
+			this->txtbxReservationService->TabIndex = 1;
+			// 
+			// label35
+			// 
+			this->label35->AutoSize = true;
+			this->label35->Location = System::Drawing::Point(382, 16);
+			this->label35->Name = L"label35";
+			this->label35->Size = System::Drawing::Size(42, 13);
+			this->label35->TabIndex = 0;
+			this->label35->Text = L"Us³uga";
+			// 
+			// tabPage5
+			// 
+			this->tabPage5->Controls->Add(this->btnClientsAdd);
+			this->tabPage5->Controls->Add(this->btnClientsModify);
+			this->tabPage5->Controls->Add(this->btnClientsDelete);
+			this->tabPage5->Controls->Add(this->gbClientsData);
+			this->tabPage5->Controls->Add(this->dgvClients);
+			this->tabPage5->Controls->Add(this->btnClientsSearch);
+			this->tabPage5->Controls->Add(this->txtbxClientsSearch);
+			this->tabPage5->Controls->Add(this->label26);
+			this->tabPage5->Location = System::Drawing::Point(4, 4);
+			this->tabPage5->Name = L"tabPage5";
+			this->tabPage5->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage5->Size = System::Drawing::Size(633, 404);
+			this->tabPage5->TabIndex = 4;
+			this->tabPage5->Text = L"Klienci";
+			this->tabPage5->UseVisualStyleBackColor = true;
+			// 
+			// btnClientsAdd
+			// 
+			this->btnClientsAdd->Location = System::Drawing::Point(357, 375);
+			this->btnClientsAdd->Name = L"btnClientsAdd";
+			this->btnClientsAdd->Size = System::Drawing::Size(75, 23);
+			this->btnClientsAdd->TabIndex = 7;
+			this->btnClientsAdd->Text = L"Dodaj";
+			this->btnClientsAdd->UseVisualStyleBackColor = true;
+			this->btnClientsAdd->Click += gcnew System::EventHandler(this, &Reception::BtnClientsAdd_Click);
+			// 
+			// btnClientsModify
+			// 
+			this->btnClientsModify->Enabled = false;
+			this->btnClientsModify->Location = System::Drawing::Point(253, 375);
+			this->btnClientsModify->Name = L"btnClientsModify";
+			this->btnClientsModify->Size = System::Drawing::Size(75, 23);
+			this->btnClientsModify->TabIndex = 6;
+			this->btnClientsModify->Text = L"Modyfikuj";
+			this->btnClientsModify->UseVisualStyleBackColor = true;
+			this->btnClientsModify->Click += gcnew System::EventHandler(this, &Reception::BtnClientsModify_Click);
+			// 
+			// btnClientsDelete
+			// 
+			this->btnClientsDelete->Enabled = false;
+			this->btnClientsDelete->Location = System::Drawing::Point(149, 375);
+			this->btnClientsDelete->Name = L"btnClientsDelete";
+			this->btnClientsDelete->Size = System::Drawing::Size(75, 23);
+			this->btnClientsDelete->TabIndex = 5;
+			this->btnClientsDelete->Text = L"Usuñ";
+			this->btnClientsDelete->UseVisualStyleBackColor = true;
+			this->btnClientsDelete->Click += gcnew System::EventHandler(this, &Reception::BtnClientsDelete_Click);
+			// 
+			// gbClientsData
+			// 
+			this->gbClientsData->Controls->Add(this->txtbxClientNumber);
+			this->gbClientsData->Controls->Add(this->txtbxClientPostZIP);
+			this->gbClientsData->Controls->Add(this->txtbxClientCity);
+			this->gbClientsData->Controls->Add(this->label31);
+			this->gbClientsData->Controls->Add(this->label32);
+			this->gbClientsData->Controls->Add(this->label33);
+			this->gbClientsData->Controls->Add(this->txtbxClientStreet);
+			this->gbClientsData->Controls->Add(this->label34);
+			this->gbClientsData->Controls->Add(this->txtbxClientPhone);
+			this->gbClientsData->Controls->Add(this->label30);
+			this->gbClientsData->Controls->Add(this->txtbxClientEmail);
+			this->gbClientsData->Controls->Add(this->label29);
+			this->gbClientsData->Controls->Add(this->txtbxClientSurname);
+			this->gbClientsData->Controls->Add(this->label28);
+			this->gbClientsData->Controls->Add(this->txtbxClientName);
+			this->gbClientsData->Controls->Add(this->label27);
+			this->gbClientsData->Location = System::Drawing::Point(4, 237);
+			this->gbClientsData->Name = L"gbClientsData";
+			this->gbClientsData->Size = System::Drawing::Size(627, 128);
+			this->gbClientsData->TabIndex = 4;
+			this->gbClientsData->TabStop = false;
+			this->gbClientsData->Text = L"Edycja danych klienta";
+			// 
+			// txtbxClientNumber
+			// 
+			this->txtbxClientNumber->Location = System::Drawing::Point(141, 100);
+			this->txtbxClientNumber->Mask = L"000-000-000";
+			this->txtbxClientNumber->Name = L"txtbxClientNumber";
+			this->txtbxClientNumber->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientNumber->TabIndex = 19;
+			// 
+			// txtbxClientPostZIP
+			// 
+			this->txtbxClientPostZIP->Location = System::Drawing::Point(354, 74);
+			this->txtbxClientPostZIP->Mask = L"00-999";
+			this->txtbxClientPostZIP->Name = L"txtbxClientPostZIP";
+			this->txtbxClientPostZIP->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientPostZIP->TabIndex = 18;
+			// 
+			// txtbxClientCity
+			// 
+			this->txtbxClientCity->Location = System::Drawing::Point(354, 100);
+			this->txtbxClientCity->Name = L"txtbxClientCity";
+			this->txtbxClientCity->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientCity->TabIndex = 17;
+			// 
+			// label31
+			// 
+			this->label31->AutoSize = true;
+			this->label31->Location = System::Drawing::Point(276, 103);
+			this->label31->Name = L"label31";
+			this->label31->Size = System::Drawing::Size(68, 13);
+			this->label31->TabIndex = 16;
+			this->label31->Text = L"Miejscowoœæ";
+			// 
+			// label32
+			// 
+			this->label32->AutoSize = true;
+			this->label32->Location = System::Drawing::Point(276, 77);
+			this->label32->Name = L"label32";
+			this->label32->Size = System::Drawing::Size(74, 13);
+			this->label32->TabIndex = 14;
+			this->label32->Text = L"Kod pocztowy";
+			// 
+			// label33
+			// 
+			this->label33->AutoSize = true;
+			this->label33->Location = System::Drawing::Point(276, 48);
+			this->label33->Name = L"label33";
+			this->label33->Size = System::Drawing::Size(38, 13);
+			this->label33->TabIndex = 12;
+			this->label33->Text = L"Numer";
+			// 
+			// txtbxClientStreet
+			// 
+			this->txtbxClientStreet->Location = System::Drawing::Point(354, 19);
+			this->txtbxClientStreet->Name = L"txtbxClientStreet";
+			this->txtbxClientStreet->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientStreet->TabIndex = 11;
+			// 
+			// label34
+			// 
+			this->label34->AutoSize = true;
+			this->label34->Location = System::Drawing::Point(276, 22);
+			this->label34->Name = L"label34";
+			this->label34->Size = System::Drawing::Size(31, 13);
+			this->label34->TabIndex = 10;
+			this->label34->Text = L"Ulica";
+			// 
+			// txtbxClientPhone
+			// 
+			this->txtbxClientPhone->Location = System::Drawing::Point(353, 45);
+			this->txtbxClientPhone->Name = L"txtbxClientPhone";
+			this->txtbxClientPhone->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientPhone->TabIndex = 9;
+			// 
+			// label30
+			// 
+			this->label30->AutoSize = true;
+			this->label30->Location = System::Drawing::Point(80, 103);
+			this->label30->Name = L"label30";
+			this->label30->Size = System::Drawing::Size(43, 13);
+			this->label30->TabIndex = 8;
+			this->label30->Text = L"Telefon";
+			// 
+			// txtbxClientEmail
+			// 
+			this->txtbxClientEmail->Location = System::Drawing::Point(141, 74);
+			this->txtbxClientEmail->Name = L"txtbxClientEmail";
+			this->txtbxClientEmail->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientEmail->TabIndex = 7;
+			// 
+			// label29
+			// 
+			this->label29->AutoSize = true;
+			this->label29->Location = System::Drawing::Point(80, 77);
+			this->label29->Name = L"label29";
+			this->label29->Size = System::Drawing::Size(32, 13);
+			this->label29->TabIndex = 6;
+			this->label29->Text = L"Email";
+			// 
+			// txtbxClientSurname
+			// 
+			this->txtbxClientSurname->Location = System::Drawing::Point(141, 45);
+			this->txtbxClientSurname->Name = L"txtbxClientSurname";
+			this->txtbxClientSurname->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientSurname->TabIndex = 5;
+			// 
+			// label28
+			// 
+			this->label28->AutoSize = true;
+			this->label28->Location = System::Drawing::Point(80, 48);
+			this->label28->Name = L"label28";
+			this->label28->Size = System::Drawing::Size(53, 13);
+			this->label28->TabIndex = 4;
+			this->label28->Text = L"Nazwisko";
+			// 
+			// txtbxClientName
+			// 
+			this->txtbxClientName->Location = System::Drawing::Point(141, 19);
+			this->txtbxClientName->Name = L"txtbxClientName";
+			this->txtbxClientName->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientName->TabIndex = 3;
+			// 
+			// label27
+			// 
+			this->label27->AutoSize = true;
+			this->label27->Location = System::Drawing::Point(80, 22);
+			this->label27->Name = L"label27";
+			this->label27->Size = System::Drawing::Size(26, 13);
+			this->label27->TabIndex = 2;
+			this->label27->Text = L"Imiê";
+			// 
+			// dgvClients
+			// 
+			this->dgvClients->AllowUserToAddRows = false;
+			this->dgvClients->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvClients->Location = System::Drawing::Point(3, 45);
+			this->dgvClients->Name = L"dgvClients";
+			this->dgvClients->Size = System::Drawing::Size(627, 186);
+			this->dgvClients->TabIndex = 3;
+			this->dgvClients->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvClients_CellClick);
+			// 
+			// btnClientsSearch
+			// 
+			this->btnClientsSearch->Location = System::Drawing::Point(161, 16);
+			this->btnClientsSearch->Name = L"btnClientsSearch";
+			this->btnClientsSearch->Size = System::Drawing::Size(75, 23);
+			this->btnClientsSearch->TabIndex = 2;
+			this->btnClientsSearch->Text = L"Szukaj";
+			this->btnClientsSearch->UseVisualStyleBackColor = true;
+			this->btnClientsSearch->Click += gcnew System::EventHandler(this, &Reception::BtnClientsSearch_Click);
+			// 
+			// txtbxClientsSearch
+			// 
+			this->txtbxClientsSearch->Location = System::Drawing::Point(47, 18);
+			this->txtbxClientsSearch->Name = L"txtbxClientsSearch";
+			this->txtbxClientsSearch->Size = System::Drawing::Size(108, 20);
+			this->txtbxClientsSearch->TabIndex = 1;
+			// 
+			// label26
+			// 
+			this->label26->AutoSize = true;
+			this->label26->Location = System::Drawing::Point(8, 21);
+			this->label26->Name = L"label26";
+			this->label26->Size = System::Drawing::Size(33, 13);
+			this->label26->TabIndex = 0;
+			this->label26->Text = L"Klient";
 			// 
 			// tabPage4
 			// 
@@ -1046,6 +1625,16 @@ namespace Cppreception {
 			this->Text = L"Reception";
 			this->Load += gcnew System::EventHandler(this, &Reception::Reception_Load);
 			this->tabControl1->ResumeLayout(false);
+			this->tabPage6->ResumeLayout(false);
+			this->tabPage6->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationEmployees))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationClients))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationServices))->EndInit();
+			this->tabPage5->ResumeLayout(false);
+			this->tabPage5->PerformLayout();
+			this->gbClientsData->ResumeLayout(false);
+			this->gbClientsData->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvClients))->EndInit();
 			this->tabPage4->ResumeLayout(false);
 			this->tabPage4->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvAddServices))->EndInit();
@@ -1071,7 +1660,7 @@ namespace Cppreception {
 
 		}
 #pragma endregion
-	int recordId, serviceId;
+	
 	private: System::Void Reception_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: Void btnChangeEnable() {
@@ -1113,7 +1702,7 @@ private: System::Void BtnSavePassword_Click(System::Object^ sender, System::Even
 	}
 }
 private: System::Void BtnSearch_Click(System::Object^ sender, System::EventArgs^ e) {	
-	String^ queryString = "SELECT user_id AS ID, user_login AS login, name AS imie, surname AS nawisko, employee as Pracownik FROM user where concat(name, ' ', surname, user_login, employee) LIKE '%" + this->txtbxSearch->Text + "%' ORDER BY surname;";
+	String^ queryString = "SELECT user_id AS ID, user_login AS login, name AS imie, surname AS nawisko, employee AS pracownik FROM user where concat(name, ' ', surname, user_login, employee) LIKE '%" + this->txtbxSearch->Text + "%' ORDER BY surname;";
 	this->refreshDataGrid(queryString, this->dgvUsers);
 	//this->dgvUsers->Columns[0]->Visible = false; // wy³¹czenie kolumny
 	
@@ -1124,8 +1713,7 @@ private: System::Void DgvUsers_CellClick(System::Object^ sender, System::Windows
 		this->txtbxEmployeeName->Text = this->dgvUsers->Rows[e->RowIndex]->Cells["imie"]->Value->ToString();
 		this->txtbxEmployeeSurname->Text = this->dgvUsers->Rows[e->RowIndex]->Cells["nawisko"]->Value->ToString();
 		this->txtbxEmployeeLogin->Text = this->dgvUsers->Rows[e->RowIndex]->Cells["login"]->Value->ToString();
-		this->chbxEmployee->Checked = Convert::ToBoolean(this->dgvUsers->Rows[e->RowIndex]->Cells["pracownik"]->Value->ToString());
-		
+		this->chbxEmployee->Checked = Convert::ToBoolean(this->dgvUsers->Rows[e->RowIndex]->Cells["pracownik"]->Value);
 		this->btnModifyUser->Enabled = true;
 		this->btnDeleteUser->Enabled = true;
 
@@ -1203,9 +1791,10 @@ private: Void addUpdateRemoveEmployeeTransaction(String^ queryString, ActionType
 		this->txtbxEmployeeLogin->Text->Length <= 2
 		) MessageBox::Show("Uzupe³nij dane!");
 	else {
+		/*
 		if (this->chbxEmployee->Checked) this->employeeType = 1;
 		else this->employeeType = 0;
-	
+		*/
 		MySqlConnection^ connect = gcnew MySqlConnection(this->config);
 		MySqlCommand^ query = connect->CreateCommand();
 		MySqlTransaction^ transaction;
@@ -1219,11 +1808,12 @@ private: Void addUpdateRemoveEmployeeTransaction(String^ queryString, ActionType
 				query->ExecuteNonQuery();
 			}
 			String^ queryStringExtra;
+			bool hasRows;
 			MySqlDataReader^ result;
 			switch (queryType) {
 				case ActionType::ADD:
 					if (this->chbxEmployee->Checked) {
-						queryStringExtra = "INSERT INTO hours SET user_id = last_insert_id(), monday_from = '" + this->txtbxMondayFrom->Text + "',  monday_to = '" + this->txtbxMondayTo->Text + "', tuesday_from = '" + this->txtbxTuesdayFrom->Text + "', tuesday_to = '" + this->txtbxTuesdayTo->Text + "', wednesday_from = '" + this->txtbxWednesdaysFrom->Text + "', wednesday_to = '" + this->txtbxWednesdaysTo->Text + "', thursday_from = '" + this->txtbxThursdayFrom->Text + "', thursday_to = '" + this->txtbxThursdayTo->Text + "', friday_from = '" + this->txtbxFridayFrom->Text + "', friday_to = '" + this->txtbxThursdayTo->Text + "', saturday_from = '" + this->txtbxSaturdayFrom->Text + "', saturday_to = '" + this->txtbxThursdayTo->Text + "';";
+						queryStringExtra = "INSERT INTO hours SET user_id = last_insert_id(), monday_from = '" + this->txtbxMondayFrom->Text + "',  monday_to = '" + this->txtbxMondayTo->Text + "', tuesday_from = '" + this->txtbxTuesdayFrom->Text + "', tuesday_to = '" + this->txtbxTuesdayTo->Text + "', wednesday_from = '" + this->txtbxWednesdaysFrom->Text + "', wednesday_to = '" + this->txtbxWednesdaysTo->Text + "', thursday_from = '" + this->txtbxThursdayFrom->Text + "', thursday_to = '" + this->txtbxThursdayTo->Text + "', friday_from = '" + this->txtbxFridayFrom->Text + "', friday_to = '" + this->txtbxFridayTo->Text + "', saturday_from = '" + this->txtbxSaturdayFrom->Text + "', saturday_to = '" + this->txtbxSaturdayTo->Text + "';";
 						query->CommandText = queryStringExtra;
 						query->ExecuteNonQuery();
 					}
@@ -1233,11 +1823,16 @@ private: Void addUpdateRemoveEmployeeTransaction(String^ queryString, ActionType
 					queryStringExtra = "SELECT * FROM hours WHERE user_id=" + this->recordId + ";";
 					query->CommandText = queryStringExtra;
 					result = query->ExecuteReader();
+					hasRows = result->HasRows;
 					result->Close();
-					if (result->HasRows && this->chbxEmployee->Checked) {
-						queryStringExtra = queryStringExtra = "UPDATE hours SET monday_from = " + this->txtbxMondayFrom->Text + ",  monday_to = " + this->txtbxMondayTo->Text + ", tuesday_from = " + this->txtbxTuesdayFrom->Text + ", tuesday_to = " + this->txtbxTuesdayTo->Text + ", wednesday_from = " + this->txtbxWednesdaysFrom->Text + ", wednesday_to = " + this->txtbxWednesdaysTo->Text + ", thursday_from = " + this->txtbxThursdayFrom->Text + ", thursday_to = " + this->txtbxThursdayTo->Text + ", friday_from = " + this->txtbxFridayFrom->Text + ", friday_to = " + this->txtbxThursdayTo->Text + ", saturday_from = " + this->txtbxSaturdayFrom->Text + ", saturday_to = " + this->txtbxThursdayTo->Text + " WHERE user_id = " + this->recordId + ";";
+					//MessageBox::Show("" + (hasRows && this->chbxEmployee->Checked));
+					
+					if (hasRows && this->chbxEmployee->Checked) {
+						MessageBox::Show("JEDEN");
+						queryStringExtra = queryStringExtra = "UPDATE hours SET monday_from = '" + this->txtbxMondayFrom->Text + "',  monday_to = '" + this->txtbxMondayTo->Text + "', tuesday_from = '" + this->txtbxTuesdayFrom->Text + "', tuesday_to = '" + this->txtbxTuesdayTo->Text + "', wednesday_from = '" + this->txtbxWednesdaysFrom->Text + "', wednesday_to = '" + this->txtbxWednesdaysTo->Text + "', thursday_from = '" + this->txtbxThursdayFrom->Text + "', thursday_to = '" + this->txtbxThursdayTo->Text + "', friday_from = '" + this->txtbxFridayFrom->Text + "', friday_to = '" + this->txtbxFridayTo->Text + "', saturday_from = '" + this->txtbxSaturdayFrom->Text + "', saturday_to = '" + this->txtbxSaturdayTo->Text + "' WHERE user_id = " + this->recordId + ";";
 						query->CommandText = queryStringExtra;
-					} else if(this->chbxEmployee->Checked) {
+					} else if(hasRows == false && this->chbxEmployee->Checked) {
+						MessageBox::Show("DWA");
 						queryStringExtra = "INSERT INTO hours SET user_id = " + this->recordId + ", monday_from = '" + this->txtbxMondayFrom->Text + "',  monday_to = '" + this->txtbxMondayTo->Text + "', tuesday_from = '" + this->txtbxTuesdayFrom->Text + "', tuesday_to = '" + this->txtbxTuesdayTo->Text + "', wednesday_from = '" + this->txtbxWednesdaysFrom->Text + "', wednesday_to = '" + this->txtbxWednesdaysTo->Text + "', thursday_from = '" + this->txtbxThursdayFrom->Text + "', thursday_to = '" + this->txtbxThursdayTo->Text + "', friday_from = '" + this->txtbxFridayFrom->Text + "', friday_to = '" + this->txtbxThursdayTo->Text + "', saturday_from = '" + this->txtbxSaturdayFrom->Text + "', saturday_to = '" + this->txtbxThursdayTo->Text + "';";
 						query->CommandText = queryStringExtra;
 					}
@@ -1263,6 +1858,7 @@ private: Void addUpdateRemoveEmployeeTransaction(String^ queryString, ActionType
 		}
 		connect->Close();
 		this->resetFieldsForUserContent(this->groupBox2);
+		this->resetFieldsForUserContent(this->grbxHours);
 
 		String^ refreshQueryString = "SELECT user_id AS ID, user_login AS login, name AS imie, surname AS nawisko, employee as Pracownik FROM user ORDER BY surname;";
 		this->refreshDataGrid(refreshQueryString, this->dgvUsers);
@@ -1279,12 +1875,21 @@ private: System::Void BtnDeleteUser_Click(System::Object^ sender, System::EventA
 	}
 }
 private: Void resetFieldsForUserContent(Control^ container) {
-	for each (Control^ el in container->Controls) if (el->GetType() == TextBox::typeid) el->Text = "";
+	for each (Control^ el in container->Controls) if (
+		el->GetType() == TextBox::typeid ||
+		el->GetType() == MaskedTextBox::typeid
+	) el->Text = "";
 	//this->chbxEmployee->Checked = false;
 }
 private: System::Void CheckBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (this->chbxEmployee->Checked) this->grbxHours->Visible = true;
-	else this->grbxHours->Visible = false;
+	if (this->chbxEmployee->Checked) {
+		this->employeeType = 1;
+		this->grbxHours->Visible = true;
+	}
+	else {
+		this->grbxHours->Visible = false;
+		this->employeeType = 0;
+	}
 	this->resetFieldsForUserContent(this->grbxHours);
 }
 private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1471,6 +2076,216 @@ private: Void addOrRemovePersonServices(String^ queryString) {
 
 private: System::Void DgvSerPer_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	this->operationOnDataGridCellClick(e, this->dgvSerPer, "Uwaga!!!", "Usun¹æ pracownikowi dan¹ us³ugê?", ActionType::DELETE);
+}
+
+private: Void addRemoveModifyClients(String^ queryString, ActionType type) {
+	if (this->txtbxClientName->Text->Length < 3 ||
+		this->txtbxClientSurname->Text->Length < 1
+		) MessageBox::Show("Uzupe³nij dane!");
+	else {
+		MySqlConnection^ connect = gcnew MySqlConnection(this->config);
+		MySqlCommand^ query = connect->CreateCommand();
+		MySqlTransaction^ transaction;
+		connect->Open();
+		transaction = connect->BeginTransaction(IsolationLevel::ReadCommitted);
+		query->Connection = connect;
+		query->Transaction = transaction;
+		try {
+			query->CommandText = queryString;
+			query->ExecuteNonQuery();
+			MySqlDataReader^ result;
+			transaction->Commit();
+			switch (type) {
+			case ActionType::ADD:
+				MessageBox::Show("Dodano poprawnie klienta");
+				this->resetFieldsForUserContent(this->gbClientsData);
+				break;
+			case ActionType::UPDATE:
+				MessageBox::Show("Zmodyfikowano poprawnie dane klienta");
+			case ActionType::DELETE:
+				MessageBox::Show("Klient zosta³ poprawnie usuniêty");
+				this->resetFieldsForUserContent(this->gbClientsData);
+			default:
+				break;
+			}
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+			transaction->Rollback();
+		}
+		connect->Close();
+	}
+	String^ queryStringReload = "SELECT * FROM clients ORDER BY name;";
+	this->refreshDataGrid(queryStringReload, this->dgvClients);
+}
+private: System::Void BtnClientsSearch_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryStringReload = "SELECT * FROM clients where concat(name, ' ', surname, ' ', street, ' ', phone, ' ', email, ' ', post_code, ' ', city) LIKE '%" + this->txtbxClientsSearch->Text + "%' ORDER BY surname; ";
+	this->refreshDataGrid(queryStringReload, this->dgvClients);
+}
+private: System::Void BtnClientsAdd_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryString = "INSERT INTO clients SET name = '" + this->txtbxClientName->Text + "', surname = '" + this->txtbxClientSurname->Text + "', email = '" + this->txtbxClientEmail->Text + "', phone = '" + this->txtbxClientEmail->Text + "', street = '" + this->txtbxClientStreet->Text + "', city = '" + this->txtbxClientCity->Text + "', post_code = '" + this->txtbxClientPostZIP->Text + "',  number = '" + this->txtbxClientNumber->Text + "';";
+	this->addRemoveModifyClients(queryString, ActionType::ADD);
+}
+private: System::Void DgvClients_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (e->RowIndex >= 0) {
+		this->recordId = Convert::ToInt32(this->dgvClients->Rows[e->RowIndex]->Cells[0]->Value);
+
+		this->txtbxClientName->Text = this->dgvClients->Rows[e->RowIndex]->Cells["name"]->Value->ToString();
+		this->txtbxClientSurname->Text = this->dgvClients->Rows[e->RowIndex]->Cells["surname"]->Value->ToString();
+		this->txtbxClientStreet->Text = this->dgvClients->Rows[e->RowIndex]->Cells["street"]->Value->ToString();
+		this->txtbxClientEmail->Text = this->dgvClients->Rows[e->RowIndex]->Cells["email"]->Value->ToString();
+		this->txtbxClientPhone->Text = this->dgvClients->Rows[e->RowIndex]->Cells["phone"]->Value->ToString();
+		this->txtbxClientPostZIP->Text = this->dgvClients->Rows[e->RowIndex]->Cells["post_code"]->Value->ToString();
+		this->txtbxClientNumber->Text = this->dgvClients->Rows[e->RowIndex]->Cells["number"]->Value->ToString();
+		this->txtbxClientCity->Text = this->dgvClients->Rows[e->RowIndex]->Cells["city"]->Value->ToString();
+		
+		this->btnClientsDelete->Enabled = true;
+		this->btnClientsModify->Enabled = true;
+	}
+}
+private: System::Void BtnClientsModify_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryString = "UPDATE clients SET name = '" + this->txtbxClientName->Text + "', surname = '" + this->txtbxClientSurname->Text + "', email = '" + this->txtbxClientEmail->Text + "', phone = '" + this->txtbxClientEmail->Text + "', street = '" + this->txtbxClientStreet->Text + "', city = '" + this->txtbxClientCity->Text + "', post_code = '" + this->txtbxClientPostZIP->Text + "',  number = '" + this->txtbxClientNumber->Text + "' WHERE client_id = " + this->recordId + ";";
+	this->addRemoveModifyClients(queryString, ActionType::UPDATE);
+}
+private: System::Void BtnClientsDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryString = "DELETE FROM clients WHERE client_id = " + this->recordId + ";";
+	if (MessageBox::Show("Jesteœ pewien, ¿e chcesz usun¹æ tego klineta?", "UWAGA!!!", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) this->addRemoveModifyClients(queryString, ActionType::DELETE);
+}
+private: System::Void BtnReservationService_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryString = "SELECT * FROM services where name LIKE '%" + this->txtbxReservationService->Text + "%' ORDER BY name;";
+	this->refreshDataGrid(queryString, this->dgvReservationServices);
+}
+private: System::Void BtnReservationClients_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryStringReload = "SELECT * FROM clients where concat(name, ' ', surname, ' ', street, ' ', phone, ' ', email, ' ', post_code, ' ', city) LIKE '%" + this->txtbxClientsSearch->Text + "%' ORDER BY surname; ";
+	this->refreshDataGrid(queryStringReload, this->dgvReservationClients);
+}
+private: System::Void BtnReservationEmployee_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryString = "SELECT user_id AS ID, user_login AS login, name AS imie, surname AS nawisko, employee as Pracownik FROM user where concat(name, ' ', surname, user_login, employee) LIKE '%" + this->txtbxSearch->Text + "%' ORDER BY surname;";
+	this->refreshDataGrid(queryString, this->dgvReservationEmployees);
+}
+private: System::Void DgvReservationServices_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (e->RowIndex >= 0) {
+		this->serviceId = Convert::ToInt32(this->dgvReservationServices->Rows[e->RowIndex]->Cells["services_id"]->Value);
+		this->txtbxReservationSetService->Text = this->dgvReservationServices->Rows[e->RowIndex]->Cells["name"]->Value->ToString();
+	}
+}
+private: System::Void DgvReservationClients_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (e->RowIndex >= 0) {
+		this->clientId = Convert::ToInt32(this->dgvReservationClients->Rows[e->RowIndex]->Cells[0]->Value);
+		this->txtbxReservationSetClient->Text = this->dgvReservationClients->Rows[e->RowIndex]->Cells["name"]->Value->ToString();
+	}
+}
+private: System::Void DgvReservationEmployees_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	String^ time;
+	String^ workFrom;
+	String^ workTo;
+	DateTime^ dayOfWeek = Convert::ToDateTime(this->choosenHour);
+	this->gbReservationHours->Controls->Clear();
+	if (e->RowIndex >= 0) {
+		this->employeeId = Convert::ToInt16(this->dgvReservationEmployees->Rows[e->RowIndex]->Cells[0]->Value);
+	}
+	int day = Convert::ToInt16(dayOfWeek->DayOfWeek), hourStart, hourStop;
+	switch (day) {
+	case 1:
+		workFrom = "monday_from";
+		workTo = "monday_to";
+		break;
+	case 2:
+		workFrom = "tuesday_from";
+		workTo = "tuesday_to";
+		break;
+	case 3:
+		workFrom = "wednesday_from";
+		workTo = "wednesday_to";
+		break;
+	case 4:
+		workFrom = "thursday_from";
+		workTo = "thursday_to";
+		break;
+	case 5:
+		workFrom = "friday_from";
+		workTo = "friday_to";
+		break;
+	case 6:
+		workFrom = "saturday_from";
+		workTo = "saturday_to";
+		break;
+	default:
+		break;
+	}
+	String^ queryString = "SELECT date_format(" + workFrom + ", '%H') AS godzina_start, date_format(" + workTo + ", '%H') AS godzina_stop From hours WHERE user_id = " + this->employeeId + "";
+	MySqlConnection^ connect = gcnew MySqlConnection(this->config);
+	connect->Open();
+	MySqlCommand^ query = gcnew MySqlCommand(queryString, connect);
+	MySqlDataReader^ data;
+	data = query->ExecuteReader();
+	data->Read();
+	if (data->HasRows) {
+		hourStart = Convert::ToInt32(data->GetInt32("godzina_start"));
+		hourStop = Convert::ToInt32(data->GetInt32("godzina_stop"));
+	}
+	connect->Close();
+	int counter = 0;
+	for (int i = hourStart; i < hourStop; i++) {
+		for (int j = 0; j < 60; j += 30) {
+			time = this->txtbxReservationSeTime->Text + " " + i + ":" + j + ":00";
+			DateTime hour = Convert::ToDateTime(time);
+			System::Windows::Forms::TextBox^ txbxHours = gcnew System::Windows::Forms::TextBox();
+			this->gbReservationHours->Controls->Add(txbxHours);
+			txbxHours->Width = 120;
+			//txbxHours->Text = Convert::ToString(hour);
+			txbxHours->Text = String::Format(hour.ToShortTimeString());
+			txbxHours->Click += gcnew System::EventHandler(this, &Reception::HourFieldClick);
+			txbxHours->Location = System::Drawing::Point(10, 25 * counter);
+			counter++;
+			/**/
+		}
+		
+	}
+}
+private: Void HourFieldClick(System::Object^ sender, System::EventArgs^ e) {/**/
+	TextBox^ field = safe_cast<TextBox^>(sender);
+	this->choosenHour = field->Text;
+	this->txtbxReservationSeTime->Text = this->choosenDate + " " + this->choosenHour;
+}
+private: System::Void MonthCalendar1_DateSelected(System::Object^ sender, System::Windows::Forms::DateRangeEventArgs^ e) {
+	this->choosenDate = String::Format(e->Start.ToShortDateString());
+	this->txtbxReservationSeTime->Text = this->choosenDate;
+}
+private: System::Void BtnReservationAdd_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (this->clientId <= 0 ||
+		this->serviceId <= 0 ||
+		this->employeeId <= 0 ||
+		this->txtbxReservationSeTime->Text->Length < 14
+		) MessageBox::Show("Uzupe³nij dane!");
+	else {
+		/**/
+		MySqlConnection^ connect = gcnew MySqlConnection(this->config);
+		MySqlCommand^ query = connect->CreateCommand();
+		MySqlTransaction^ transaction;
+		connect->Open();
+		transaction = connect->BeginTransaction(IsolationLevel::ReadCommitted);
+		query->Connection = connect;
+		query->Transaction = transaction;
+		try {
+			DateTime^ reservationFrom = Convert::ToDateTime(this->choosenDate + " " + this->choosenHour);
+			String^ queryString = "INSERT INTO visits SET client_id = " + this->clientId + ", services_id = " + this->serviceId + ", user_id = " + this->employeeId + ", reservation_from = '" + reservationFrom + "', reservation_to = '" + reservationFrom + "', status = 'waiting';";
+			query->CommandText = queryString;
+			query->ExecuteNonQuery();
+			transaction->Commit();
+			MessageBox::Show("Rezerwacja udana!");
+		}
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message);
+			transaction->Rollback();
+		}
+		connect->Close();
+		
+	}
+	/*
+	String^ queryStringReload = "SELECT `services`.`services_id`, `services`.`name`, `services`.`price`, `services`.time FROM services, user_service WHERE `services`.`services_id` = `user_service`.`service_id` AND `user_service`.`user_id` = " + this->recordId + " ORDER BY name;";
+	this->refreshDataGrid(queryStringReload, this->dgvSerPer);
+	*/
 }
 };
 }
