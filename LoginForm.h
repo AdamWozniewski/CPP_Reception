@@ -59,6 +59,7 @@ namespace Cppreception {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LoginForm::typeid));
 			this->btnLogin = (gcnew System::Windows::Forms::Button());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->lblUser = (gcnew System::Windows::Forms::Label());
@@ -69,69 +70,87 @@ namespace Cppreception {
 			// 
 			// btnLogin
 			// 
-			this->btnLogin->Location = System::Drawing::Point(28, 210);
+			this->btnLogin->BackColor = System::Drawing::Color::LimeGreen;
+			this->btnLogin->FlatAppearance->BorderSize = 0;
+			this->btnLogin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnLogin->Location = System::Drawing::Point(36, 150);
+			this->btnLogin->Margin = System::Windows::Forms::Padding(4);
 			this->btnLogin->Name = L"btnLogin";
-			this->btnLogin->Size = System::Drawing::Size(75, 23);
+			this->btnLogin->Size = System::Drawing::Size(100, 30);
 			this->btnLogin->TabIndex = 0;
 			this->btnLogin->Text = L"Zaloguj";
-			this->btnLogin->UseVisualStyleBackColor = true;
+			this->btnLogin->UseVisualStyleBackColor = false;
 			this->btnLogin->Click += gcnew System::EventHandler(this, &LoginForm::BtnLogin_Click);
 			// 
 			// btnCancel
 			// 
-			this->btnCancel->Location = System::Drawing::Point(153, 210);
+			this->btnCancel->BackColor = System::Drawing::Color::Moccasin;
+			this->btnCancel->FlatAppearance->BorderSize = 0;
+			this->btnCancel->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnCancel->Location = System::Drawing::Point(187, 150);
+			this->btnCancel->Margin = System::Windows::Forms::Padding(4);
 			this->btnCancel->Name = L"btnCancel";
-			this->btnCancel->Size = System::Drawing::Size(75, 23);
+			this->btnCancel->Size = System::Drawing::Size(100, 30);
 			this->btnCancel->TabIndex = 1;
 			this->btnCancel->Text = L"Anuluj";
-			this->btnCancel->UseVisualStyleBackColor = true;
+			this->btnCancel->UseVisualStyleBackColor = false;
 			this->btnCancel->Click += gcnew System::EventHandler(this, &LoginForm::BtnCancel_Click);
 			// 
 			// lblUser
 			// 
 			this->lblUser->AutoSize = true;
-			this->lblUser->Location = System::Drawing::Point(25, 38);
+			this->lblUser->Location = System::Drawing::Point(33, 50);
+			this->lblUser->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblUser->Name = L"lblUser";
-			this->lblUser->Size = System::Drawing::Size(62, 13);
+			this->lblUser->Size = System::Drawing::Size(81, 17);
 			this->lblUser->TabIndex = 2;
 			this->lblUser->Text = L"U¿ytkownik";
 			// 
 			// lblPassword
 			// 
 			this->lblPassword->AutoSize = true;
-			this->lblPassword->Location = System::Drawing::Point(51, 112);
+			this->lblPassword->Location = System::Drawing::Point(68, 106);
+			this->lblPassword->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblPassword->Name = L"lblPassword";
-			this->lblPassword->Size = System::Drawing::Size(36, 13);
+			this->lblPassword->Size = System::Drawing::Size(45, 17);
 			this->lblPassword->TabIndex = 3;
 			this->lblPassword->Text = L"Has³o";
 			// 
 			// txtbxUser
 			// 
-			this->txtbxUser->Location = System::Drawing::Point(116, 35);
+			this->txtbxUser->Location = System::Drawing::Point(155, 46);
+			this->txtbxUser->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxUser->Name = L"txtbxUser";
-			this->txtbxUser->Size = System::Drawing::Size(100, 20);
+			this->txtbxUser->Size = System::Drawing::Size(132, 25);
 			this->txtbxUser->TabIndex = 4;
 			// 
 			// txtbxPassword
 			// 
-			this->txtbxPassword->Location = System::Drawing::Point(116, 105);
+			this->txtbxPassword->Location = System::Drawing::Point(155, 96);
+			this->txtbxPassword->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxPassword->Name = L"txtbxPassword";
 			this->txtbxPassword->PasswordChar = '*';
-			this->txtbxPassword->Size = System::Drawing::Size(100, 20);
+			this->txtbxPassword->Size = System::Drawing::Size(132, 25);
 			this->txtbxPassword->TabIndex = 5;
 			// 
 			// LoginForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 17);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->BackColor = System::Drawing::Color::LightSeaGreen;
+			this->ClientSize = System::Drawing::Size(336, 205);
 			this->Controls->Add(this->txtbxPassword);
 			this->Controls->Add(this->txtbxUser);
 			this->Controls->Add(this->lblPassword);
 			this->Controls->Add(this->lblUser);
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnLogin);
+			this->Font = (gcnew System::Drawing::Font(L"Arial", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"LoginForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"LoginForm";
 			this->ResumeLayout(false);
 			this->PerformLayout();
