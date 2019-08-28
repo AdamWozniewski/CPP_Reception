@@ -1,4 +1,6 @@
 #pragma once
+#include <chrono>
+#include <ctime>
 
 namespace Cppreception {
 
@@ -25,11 +27,27 @@ namespace Cppreception {
 		int ID, recordId, serviceId, clientId, employeeId, employeeType, visitId;
 		String^ config = L"datasource=localhost; port=3306; username=root; password=''; database=reception;";
 		String^ choosenDate;
+	private: System::Windows::Forms::Button^ btnReservationClientsToday;
+	public:
+
+	private: System::Windows::Forms::Button^ btnTodayReservationsDeclined;
+
+	private: System::Windows::Forms::Button^ btnTodayReservationsReady;
+
+	private: System::Windows::Forms::Label^ reservationTodayService;
+	private: System::Windows::Forms::Label^ reservationTodayHour;
+	private: System::Windows::Forms::Label^ reservationTodayEmployee;
+	private: System::Windows::Forms::Label^ reservationTodayPerson;
+	private: System::Windows::Forms::Button^ btnReservationClientsTommorow;
+	private: System::Windows::Forms::ToolStripButton^ toolStripButton7;
+
+	public:
 		String^ choosenHour;
 		Reception(int userID)
 		{
 			InitializeComponent();
 			this->ID = userID;
+			//this->connect = gcnew MySqlConnection(this->config);
 		}
 
 	protected:
@@ -43,13 +61,17 @@ namespace Cppreception {
 				delete components;
 			}
 		}
-
+	//private:
+		//MySqlConnection^ connect;
 	private: System::Windows::Forms::Button^ btnAddUser;
 	private: System::Windows::Forms::Button^ btnModifyUser;
 	private: System::Windows::Forms::Button^ btnDeleteUser;
 	private: System::Windows::Forms::CheckBox^ chbxEmployee;
 	private: System::Windows::Forms::GroupBox^ grbxHours;
 	private: System::Windows::Forms::TabControl^ tabControl1;
+
+
+
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::TabPage^ EmployeeTab;
 	private: System::Windows::Forms::TabPage^ PasswordTab;
@@ -183,6 +205,13 @@ namespace Cppreception {
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton5;
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton1;
 	private: System::Windows::Forms::ToolStrip^ toolStrip1;
+	private: System::Windows::Forms::GroupBox^ groupBox3;
+	private: System::Windows::Forms::Label^ label44;
+	private: System::Windows::Forms::Label^ label43;
+	private: System::Windows::Forms::Label^ label42;
+	private: System::Windows::Forms::Label^ label41;
+	private: System::Windows::Forms::DataGridView^ dgvReservationClientsToday;
+	private: System::Windows::Forms::TabPage^ ReservationToday;
 	private:
 		/// <summary>
 		/// Wymagana zmienna projektanta.
@@ -198,6 +227,21 @@ namespace Cppreception {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Reception::typeid));
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->ReservationToday = (gcnew System::Windows::Forms::TabPage());
+			this->btnReservationClientsTommorow = (gcnew System::Windows::Forms::Button());
+			this->btnReservationClientsToday = (gcnew System::Windows::Forms::Button());
+			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->btnTodayReservationsDeclined = (gcnew System::Windows::Forms::Button());
+			this->btnTodayReservationsReady = (gcnew System::Windows::Forms::Button());
+			this->reservationTodayService = (gcnew System::Windows::Forms::Label());
+			this->reservationTodayHour = (gcnew System::Windows::Forms::Label());
+			this->reservationTodayEmployee = (gcnew System::Windows::Forms::Label());
+			this->reservationTodayPerson = (gcnew System::Windows::Forms::Label());
+			this->label44 = (gcnew System::Windows::Forms::Label());
+			this->label43 = (gcnew System::Windows::Forms::Label());
+			this->label42 = (gcnew System::Windows::Forms::Label());
+			this->label41 = (gcnew System::Windows::Forms::Label());
+			this->dgvReservationClientsToday = (gcnew System::Windows::Forms::DataGridView());
 			this->ReservationTab = (gcnew System::Windows::Forms::TabPage());
 			this->btnReservationDelete = (gcnew System::Windows::Forms::Button());
 			this->btnReservationModify = (gcnew System::Windows::Forms::Button());
@@ -330,6 +374,7 @@ namespace Cppreception {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
+			this->toolStripButton7 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton4 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton2 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton6 = (gcnew System::Windows::Forms::ToolStripButton());
@@ -337,6 +382,9 @@ namespace Cppreception {
 			this->toolStripButton5 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->tabControl1->SuspendLayout();
+			this->ReservationToday->SuspendLayout();
+			this->groupBox3->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationClientsToday))->BeginInit();
 			this->ReservationTab->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationEmployees))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationClients))->BeginInit();
@@ -364,6 +412,7 @@ namespace Cppreception {
 			// tabControl1
 			// 
 			this->tabControl1->Alignment = System::Windows::Forms::TabAlignment::Bottom;
+			this->tabControl1->Controls->Add(this->ReservationToday);
 			this->tabControl1->Controls->Add(this->ReservationTab);
 			this->tabControl1->Controls->Add(this->ClientsTab);
 			this->tabControl1->Controls->Add(this->EmployeeServiceTab);
@@ -376,6 +425,199 @@ namespace Cppreception {
 			this->tabControl1->SelectedIndex = 0;
 			this->tabControl1->Size = System::Drawing::Size(890, 562);
 			this->tabControl1->TabIndex = 0;
+			// 
+			// ReservationToday
+			// 
+			this->ReservationToday->Controls->Add(this->btnReservationClientsTommorow);
+			this->ReservationToday->Controls->Add(this->btnReservationClientsToday);
+			this->ReservationToday->Controls->Add(this->groupBox3);
+			this->ReservationToday->Controls->Add(this->dgvReservationClientsToday);
+			this->ReservationToday->Location = System::Drawing::Point(4, 4);
+			this->ReservationToday->Name = L"ReservationToday";
+			this->ReservationToday->Padding = System::Windows::Forms::Padding(3);
+			this->ReservationToday->Size = System::Drawing::Size(882, 532);
+			this->ReservationToday->TabIndex = 6;
+			this->ReservationToday->Text = L"Klienci dziœ";
+			this->ReservationToday->UseVisualStyleBackColor = true;
+			// 
+			// btnReservationClientsTommorow
+			// 
+			this->btnReservationClientsTommorow->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)),
+				static_cast<System::Int32>(static_cast<System::Byte>(161)), static_cast<System::Int32>(static_cast<System::Byte>(226)));
+			this->btnReservationClientsTommorow->FlatAppearance->BorderSize = 0;
+			this->btnReservationClientsTommorow->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnReservationClientsTommorow->Font = (gcnew System::Drawing::Font(L"Arial", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->btnReservationClientsTommorow->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnReservationClientsTommorow->Location = System::Drawing::Point(676, 6);
+			this->btnReservationClientsTommorow->Name = L"btnReservationClientsTommorow";
+			this->btnReservationClientsTommorow->Size = System::Drawing::Size(200, 43);
+			this->btnReservationClientsTommorow->TabIndex = 3;
+			this->btnReservationClientsTommorow->Text = L"Za³aduj jutrzejsze wizyty";
+			this->btnReservationClientsTommorow->UseVisualStyleBackColor = false;
+			this->btnReservationClientsTommorow->Click += gcnew System::EventHandler(this, &Reception::BtnReservationClientsTommorow_Click);
+			// 
+			// btnReservationClientsToday
+			// 
+			this->btnReservationClientsToday->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)),
+				static_cast<System::Int32>(static_cast<System::Byte>(161)), static_cast<System::Int32>(static_cast<System::Byte>(226)));
+			this->btnReservationClientsToday->FlatAppearance->BorderSize = 0;
+			this->btnReservationClientsToday->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnReservationClientsToday->Font = (gcnew System::Drawing::Font(L"Arial", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->btnReservationClientsToday->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnReservationClientsToday->Location = System::Drawing::Point(7, 6);
+			this->btnReservationClientsToday->Name = L"btnReservationClientsToday";
+			this->btnReservationClientsToday->Size = System::Drawing::Size(200, 43);
+			this->btnReservationClientsToday->TabIndex = 2;
+			this->btnReservationClientsToday->Text = L"Za³aduj dzisiejsze wizyty";
+			this->btnReservationClientsToday->UseVisualStyleBackColor = false;
+			this->btnReservationClientsToday->Click += gcnew System::EventHandler(this, &Reception::Button6_Click);
+			// 
+			// groupBox3
+			// 
+			this->groupBox3->Controls->Add(this->btnTodayReservationsDeclined);
+			this->groupBox3->Controls->Add(this->btnTodayReservationsReady);
+			this->groupBox3->Controls->Add(this->reservationTodayService);
+			this->groupBox3->Controls->Add(this->reservationTodayHour);
+			this->groupBox3->Controls->Add(this->reservationTodayEmployee);
+			this->groupBox3->Controls->Add(this->reservationTodayPerson);
+			this->groupBox3->Controls->Add(this->label44);
+			this->groupBox3->Controls->Add(this->label43);
+			this->groupBox3->Controls->Add(this->label42);
+			this->groupBox3->Controls->Add(this->label41);
+			this->groupBox3->Location = System::Drawing::Point(7, 398);
+			this->groupBox3->Name = L"groupBox3";
+			this->groupBox3->Size = System::Drawing::Size(869, 128);
+			this->groupBox3->TabIndex = 1;
+			this->groupBox3->TabStop = false;
+			this->groupBox3->Text = L"Wybrana osoba";
+			// 
+			// btnTodayReservationsDeclined
+			// 
+			this->btnTodayReservationsDeclined->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(238)),
+				static_cast<System::Int32>(static_cast<System::Byte>(17)), static_cast<System::Int32>(static_cast<System::Byte>(17)));
+			this->btnTodayReservationsDeclined->Enabled = false;
+			this->btnTodayReservationsDeclined->FlatAppearance->BorderSize = 0;
+			this->btnTodayReservationsDeclined->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnTodayReservationsDeclined->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnTodayReservationsDeclined->Location = System::Drawing::Point(721, 81);
+			this->btnTodayReservationsDeclined->Name = L"btnTodayReservationsDeclined";
+			this->btnTodayReservationsDeclined->Size = System::Drawing::Size(142, 41);
+			this->btnTodayReservationsDeclined->TabIndex = 9;
+			this->btnTodayReservationsDeclined->Text = L"Status: Odrzucone";
+			this->btnTodayReservationsDeclined->UseVisualStyleBackColor = false;
+			this->btnTodayReservationsDeclined->Click += gcnew System::EventHandler(this, &Reception::BtnTodayReservationsDeclined_Click);
+			// 
+			// btnTodayReservationsReady
+			// 
+			this->btnTodayReservationsReady->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(138)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->btnTodayReservationsReady->Enabled = false;
+			this->btnTodayReservationsReady->FlatAppearance->BorderSize = 0;
+			this->btnTodayReservationsReady->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnTodayReservationsReady->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->btnTodayReservationsReady->Location = System::Drawing::Point(721, 13);
+			this->btnTodayReservationsReady->Name = L"btnTodayReservationsReady";
+			this->btnTodayReservationsReady->Size = System::Drawing::Size(142, 41);
+			this->btnTodayReservationsReady->TabIndex = 8;
+			this->btnTodayReservationsReady->Text = L"Status: Gotowe";
+			this->btnTodayReservationsReady->UseVisualStyleBackColor = false;
+			this->btnTodayReservationsReady->Click += gcnew System::EventHandler(this, &Reception::BtnTodayReservationsReady_Click);
+			// 
+			// reservationTodayService
+			// 
+			this->reservationTodayService->AutoSize = true;
+			this->reservationTodayService->Location = System::Drawing::Point(454, 86);
+			this->reservationTodayService->Name = L"reservationTodayService";
+			this->reservationTodayService->Size = System::Drawing::Size(13, 17);
+			this->reservationTodayService->TabIndex = 7;
+			this->reservationTodayService->Text = L"-";
+			// 
+			// reservationTodayHour
+			// 
+			this->reservationTodayHour->AutoSize = true;
+			this->reservationTodayHour->Location = System::Drawing::Point(465, 37);
+			this->reservationTodayHour->Name = L"reservationTodayHour";
+			this->reservationTodayHour->Size = System::Drawing::Size(13, 17);
+			this->reservationTodayHour->TabIndex = 6;
+			this->reservationTodayHour->Text = L"-";
+			// 
+			// reservationTodayEmployee
+			// 
+			this->reservationTodayEmployee->AutoSize = true;
+			this->reservationTodayEmployee->Location = System::Drawing::Point(95, 86);
+			this->reservationTodayEmployee->Name = L"reservationTodayEmployee";
+			this->reservationTodayEmployee->Size = System::Drawing::Size(13, 17);
+			this->reservationTodayEmployee->TabIndex = 5;
+			this->reservationTodayEmployee->Text = L"-";
+			// 
+			// reservationTodayPerson
+			// 
+			this->reservationTodayPerson->AutoSize = true;
+			this->reservationTodayPerson->Location = System::Drawing::Point(68, 37);
+			this->reservationTodayPerson->Name = L"reservationTodayPerson";
+			this->reservationTodayPerson->Size = System::Drawing::Size(13, 17);
+			this->reservationTodayPerson->TabIndex = 4;
+			this->reservationTodayPerson->Text = L"-";
+			// 
+			// label44
+			// 
+			this->label44->AutoSize = true;
+			this->label44->Font = (gcnew System::Drawing::Font(L"Arial", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label44->Location = System::Drawing::Point(393, 86);
+			this->label44->Name = L"label44";
+			this->label44->Size = System::Drawing::Size(59, 18);
+			this->label44->TabIndex = 3;
+			this->label44->Text = L"Zabieg:";
+			// 
+			// label43
+			// 
+			this->label43->AutoSize = true;
+			this->label43->Font = (gcnew System::Drawing::Font(L"Arial", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label43->Location = System::Drawing::Point(393, 37);
+			this->label43->Name = L"label43";
+			this->label43->Size = System::Drawing::Size(71, 18);
+			this->label43->TabIndex = 2;
+			this->label43->Text = L"Godzina:";
+			// 
+			// label42
+			// 
+			this->label42->AutoSize = true;
+			this->label42->Font = (gcnew System::Drawing::Font(L"Arial", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label42->Location = System::Drawing::Point(6, 86);
+			this->label42->Name = L"label42";
+			this->label42->Size = System::Drawing::Size(89, 18);
+			this->label42->TabIndex = 1;
+			this->label42->Text = L"Specjalista:";
+			// 
+			// label41
+			// 
+			this->label41->AutoSize = true;
+			this->label41->Font = (gcnew System::Drawing::Font(L"Arial", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->label41->Location = System::Drawing::Point(6, 37);
+			this->label41->Name = L"label41";
+			this->label41->Size = System::Drawing::Size(58, 18);
+			this->label41->TabIndex = 0;
+			this->label41->Text = L"Osoba:";
+			// 
+			// dgvReservationClientsToday
+			// 
+			this->dgvReservationClientsToday->AllowUserToAddRows = false;
+			this->dgvReservationClientsToday->AllowUserToDeleteRows = false;
+			this->dgvReservationClientsToday->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->dgvReservationClientsToday->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
+			this->dgvReservationClientsToday->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvReservationClientsToday->Location = System::Drawing::Point(7, 55);
+			this->dgvReservationClientsToday->Name = L"dgvReservationClientsToday";
+			this->dgvReservationClientsToday->ReadOnly = true;
+			this->dgvReservationClientsToday->Size = System::Drawing::Size(869, 337);
+			this->dgvReservationClientsToday->TabIndex = 0;
+			this->dgvReservationClientsToday->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvReservationClientsToday_CellClick);
 			// 
 			// ReservationTab
 			// 
@@ -422,7 +664,7 @@ namespace Cppreception {
 			this->btnReservationDelete->Location = System::Drawing::Point(16, 491);
 			this->btnReservationDelete->Margin = System::Windows::Forms::Padding(4);
 			this->btnReservationDelete->Name = L"btnReservationDelete";
-			this->btnReservationDelete->Size = System::Drawing::Size(209, 30);
+			this->btnReservationDelete->Size = System::Drawing::Size(265, 30);
 			this->btnReservationDelete->TabIndex = 26;
 			this->btnReservationDelete->Text = L"Usuñ";
 			this->btnReservationDelete->UseVisualStyleBackColor = false;
@@ -439,7 +681,7 @@ namespace Cppreception {
 			this->btnReservationModify->Location = System::Drawing::Point(15, 453);
 			this->btnReservationModify->Margin = System::Windows::Forms::Padding(4);
 			this->btnReservationModify->Name = L"btnReservationModify";
-			this->btnReservationModify->Size = System::Drawing::Size(209, 30);
+			this->btnReservationModify->Size = System::Drawing::Size(266, 30);
 			this->btnReservationModify->TabIndex = 25;
 			this->btnReservationModify->Text = L"Modyfikuj";
 			this->btnReservationModify->UseVisualStyleBackColor = false;
@@ -455,7 +697,7 @@ namespace Cppreception {
 			this->btnReservationAdd->Location = System::Drawing::Point(16, 415);
 			this->btnReservationAdd->Margin = System::Windows::Forms::Padding(4);
 			this->btnReservationAdd->Name = L"btnReservationAdd";
-			this->btnReservationAdd->Size = System::Drawing::Size(209, 30);
+			this->btnReservationAdd->Size = System::Drawing::Size(265, 30);
 			this->btnReservationAdd->TabIndex = 24;
 			this->btnReservationAdd->Text = L"Dodaj";
 			this->btnReservationAdd->UseVisualStyleBackColor = false;
@@ -497,7 +739,7 @@ namespace Cppreception {
 			this->txtbxReservationSeTime->Location = System::Drawing::Point(16, 352);
 			this->txtbxReservationSeTime->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxReservationSeTime->Name = L"txtbxReservationSeTime";
-			this->txtbxReservationSeTime->Size = System::Drawing::Size(209, 25);
+			this->txtbxReservationSeTime->Size = System::Drawing::Size(265, 25);
 			this->txtbxReservationSeTime->TabIndex = 20;
 			// 
 			// txtbxReservationSetService
@@ -506,7 +748,7 @@ namespace Cppreception {
 			this->txtbxReservationSetService->Location = System::Drawing::Point(15, 289);
 			this->txtbxReservationSetService->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxReservationSetService->Name = L"txtbxReservationSetService";
-			this->txtbxReservationSetService->Size = System::Drawing::Size(210, 25);
+			this->txtbxReservationSetService->Size = System::Drawing::Size(266, 25);
 			this->txtbxReservationSetService->TabIndex = 19;
 			// 
 			// txtbxReservationSetClient
@@ -515,7 +757,7 @@ namespace Cppreception {
 			this->txtbxReservationSetClient->Location = System::Drawing::Point(15, 230);
 			this->txtbxReservationSetClient->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxReservationSetClient->Name = L"txtbxReservationSetClient";
-			this->txtbxReservationSetClient->Size = System::Drawing::Size(210, 25);
+			this->txtbxReservationSetClient->Size = System::Drawing::Size(266, 25);
 			this->txtbxReservationSetClient->TabIndex = 18;
 			// 
 			// dgvReservationEmployees
@@ -523,7 +765,7 @@ namespace Cppreception {
 			this->dgvReservationEmployees->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dgvReservationEmployees->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvReservationEmployees->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvReservationEmployees->Location = System::Drawing::Point(508, 384);
+			this->dgvReservationEmployees->Location = System::Drawing::Point(549, 384);
 			this->dgvReservationEmployees->Margin = System::Windows::Forms::Padding(4);
 			this->dgvReservationEmployees->Name = L"dgvReservationEmployees";
 			this->dgvReservationEmployees->Size = System::Drawing::Size(320, 137);
@@ -536,7 +778,7 @@ namespace Cppreception {
 				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->btnReservationEmployee->FlatAppearance->BorderSize = 0;
 			this->btnReservationEmployee->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnReservationEmployee->Location = System::Drawing::Point(728, 345);
+			this->btnReservationEmployee->Location = System::Drawing::Point(769, 345);
 			this->btnReservationEmployee->Margin = System::Windows::Forms::Padding(4);
 			this->btnReservationEmployee->Name = L"btnReservationEmployee";
 			this->btnReservationEmployee->Size = System::Drawing::Size(100, 30);
@@ -548,7 +790,7 @@ namespace Cppreception {
 			// txtbxReservationEmployee
 			// 
 			this->txtbxReservationEmployee->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxReservationEmployee->Location = System::Drawing::Point(587, 347);
+			this->txtbxReservationEmployee->Location = System::Drawing::Point(628, 347);
 			this->txtbxReservationEmployee->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxReservationEmployee->Name = L"txtbxReservationEmployee";
 			this->txtbxReservationEmployee->Size = System::Drawing::Size(132, 25);
@@ -557,7 +799,7 @@ namespace Cppreception {
 			// label37
 			// 
 			this->label37->AutoSize = true;
-			this->label37->Location = System::Drawing::Point(509, 352);
+			this->label37->Location = System::Drawing::Point(550, 352);
 			this->label37->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label37->Name = L"label37";
 			this->label37->Size = System::Drawing::Size(76, 17);
@@ -575,11 +817,11 @@ namespace Cppreception {
 			// 
 			// gbReservationHours
 			// 
-			this->gbReservationHours->Location = System::Drawing::Point(233, 17);
+			this->gbReservationHours->Location = System::Drawing::Point(290, 17);
 			this->gbReservationHours->Margin = System::Windows::Forms::Padding(4);
 			this->gbReservationHours->Name = L"gbReservationHours";
 			this->gbReservationHours->Padding = System::Windows::Forms::Padding(4);
-			this->gbReservationHours->Size = System::Drawing::Size(267, 504);
+			this->gbReservationHours->Size = System::Drawing::Size(251, 504);
 			this->gbReservationHours->TabIndex = 8;
 			this->gbReservationHours->TabStop = false;
 			this->gbReservationHours->Text = L"Godziny";
@@ -588,7 +830,7 @@ namespace Cppreception {
 			// 
 			this->dgvReservationClients->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvReservationClients->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvReservationClients->Location = System::Drawing::Point(508, 221);
+			this->dgvReservationClients->Location = System::Drawing::Point(549, 221);
 			this->dgvReservationClients->Margin = System::Windows::Forms::Padding(4);
 			this->dgvReservationClients->Name = L"dgvReservationClients";
 			this->dgvReservationClients->Size = System::Drawing::Size(320, 117);
@@ -601,7 +843,7 @@ namespace Cppreception {
 				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->btnReservationClients->FlatAppearance->BorderSize = 0;
 			this->btnReservationClients->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnReservationClients->Location = System::Drawing::Point(728, 183);
+			this->btnReservationClients->Location = System::Drawing::Point(769, 183);
 			this->btnReservationClients->Margin = System::Windows::Forms::Padding(4);
 			this->btnReservationClients->Name = L"btnReservationClients";
 			this->btnReservationClients->Size = System::Drawing::Size(100, 30);
@@ -613,7 +855,7 @@ namespace Cppreception {
 			// txtbxReservationClients
 			// 
 			this->txtbxReservationClients->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxReservationClients->Location = System::Drawing::Point(587, 186);
+			this->txtbxReservationClients->Location = System::Drawing::Point(628, 186);
 			this->txtbxReservationClients->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxReservationClients->Name = L"txtbxReservationClients";
 			this->txtbxReservationClients->Size = System::Drawing::Size(132, 25);
@@ -622,7 +864,7 @@ namespace Cppreception {
 			// label36
 			// 
 			this->label36->AutoSize = true;
-			this->label36->Location = System::Drawing::Point(509, 189);
+			this->label36->Location = System::Drawing::Point(550, 189);
 			this->label36->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label36->Name = L"label36";
 			this->label36->Size = System::Drawing::Size(51, 17);
@@ -633,7 +875,7 @@ namespace Cppreception {
 			// 
 			this->dgvReservationServices->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvReservationServices->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvReservationServices->Location = System::Drawing::Point(508, 52);
+			this->dgvReservationServices->Location = System::Drawing::Point(549, 52);
 			this->dgvReservationServices->Margin = System::Windows::Forms::Padding(4);
 			this->dgvReservationServices->Name = L"dgvReservationServices";
 			this->dgvReservationServices->Size = System::Drawing::Size(320, 123);
@@ -646,7 +888,7 @@ namespace Cppreception {
 				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->btnReservationService->FlatAppearance->BorderSize = 0;
 			this->btnReservationService->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnReservationService->Location = System::Drawing::Point(728, 15);
+			this->btnReservationService->Location = System::Drawing::Point(769, 15);
 			this->btnReservationService->Margin = System::Windows::Forms::Padding(4);
 			this->btnReservationService->Name = L"btnReservationService";
 			this->btnReservationService->Size = System::Drawing::Size(100, 30);
@@ -658,7 +900,7 @@ namespace Cppreception {
 			// txtbxReservationService
 			// 
 			this->txtbxReservationService->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxReservationService->Location = System::Drawing::Point(587, 17);
+			this->txtbxReservationService->Location = System::Drawing::Point(628, 17);
 			this->txtbxReservationService->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxReservationService->Name = L"txtbxReservationService";
 			this->txtbxReservationService->Size = System::Drawing::Size(132, 25);
@@ -667,7 +909,7 @@ namespace Cppreception {
 			// label35
 			// 
 			this->label35->AutoSize = true;
-			this->label35->Location = System::Drawing::Point(509, 21);
+			this->label35->Location = System::Drawing::Point(550, 21);
 			this->label35->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label35->Name = L"label35";
 			this->label35->Size = System::Drawing::Size(53, 17);
@@ -700,7 +942,7 @@ namespace Cppreception {
 			this->btnClientsAdd->FlatAppearance->BorderSize = 0;
 			this->btnClientsAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnClientsAdd->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->btnClientsAdd->Location = System::Drawing::Point(476, 491);
+			this->btnClientsAdd->Location = System::Drawing::Point(519, 491);
 			this->btnClientsAdd->Margin = System::Windows::Forms::Padding(4);
 			this->btnClientsAdd->Name = L"btnClientsAdd";
 			this->btnClientsAdd->Size = System::Drawing::Size(100, 30);
@@ -717,7 +959,7 @@ namespace Cppreception {
 			this->btnClientsModify->FlatAppearance->BorderSize = 0;
 			this->btnClientsModify->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnClientsModify->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->btnClientsModify->Location = System::Drawing::Point(337, 491);
+			this->btnClientsModify->Location = System::Drawing::Point(380, 491);
 			this->btnClientsModify->Margin = System::Windows::Forms::Padding(4);
 			this->btnClientsModify->Name = L"btnClientsModify";
 			this->btnClientsModify->Size = System::Drawing::Size(100, 30);
@@ -734,7 +976,7 @@ namespace Cppreception {
 			this->btnClientsDelete->FlatAppearance->BorderSize = 0;
 			this->btnClientsDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnClientsDelete->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->btnClientsDelete->Location = System::Drawing::Point(199, 491);
+			this->btnClientsDelete->Location = System::Drawing::Point(242, 491);
 			this->btnClientsDelete->Margin = System::Windows::Forms::Padding(4);
 			this->btnClientsDelete->Name = L"btnClientsDelete";
 			this->btnClientsDelete->Size = System::Drawing::Size(100, 30);
@@ -765,7 +1007,7 @@ namespace Cppreception {
 			this->gbClientsData->Margin = System::Windows::Forms::Padding(4);
 			this->gbClientsData->Name = L"gbClientsData";
 			this->gbClientsData->Padding = System::Windows::Forms::Padding(4);
-			this->gbClientsData->Size = System::Drawing::Size(836, 168);
+			this->gbClientsData->Size = System::Drawing::Size(869, 168);
 			this->gbClientsData->TabIndex = 4;
 			this->gbClientsData->TabStop = false;
 			this->gbClientsData->Text = L"Edycja danych klienta";
@@ -773,7 +1015,7 @@ namespace Cppreception {
 			// txtbxClientNumber
 			// 
 			this->txtbxClientNumber->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxClientNumber->Location = System::Drawing::Point(188, 131);
+			this->txtbxClientNumber->Location = System::Drawing::Point(242, 131);
 			this->txtbxClientNumber->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxClientNumber->Mask = L"000-000-000";
 			this->txtbxClientNumber->Name = L"txtbxClientNumber";
@@ -783,7 +1025,7 @@ namespace Cppreception {
 			// txtbxClientPostZIP
 			// 
 			this->txtbxClientPostZIP->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxClientPostZIP->Location = System::Drawing::Point(472, 97);
+			this->txtbxClientPostZIP->Location = System::Drawing::Point(526, 97);
 			this->txtbxClientPostZIP->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxClientPostZIP->Mask = L"00-999";
 			this->txtbxClientPostZIP->Name = L"txtbxClientPostZIP";
@@ -793,7 +1035,7 @@ namespace Cppreception {
 			// txtbxClientCity
 			// 
 			this->txtbxClientCity->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxClientCity->Location = System::Drawing::Point(472, 131);
+			this->txtbxClientCity->Location = System::Drawing::Point(526, 131);
 			this->txtbxClientCity->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxClientCity->Name = L"txtbxClientCity";
 			this->txtbxClientCity->Size = System::Drawing::Size(143, 25);
@@ -802,7 +1044,7 @@ namespace Cppreception {
 			// label31
 			// 
 			this->label31->AutoSize = true;
-			this->label31->Location = System::Drawing::Point(368, 135);
+			this->label31->Location = System::Drawing::Point(422, 135);
 			this->label31->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label31->Name = L"label31";
 			this->label31->Size = System::Drawing::Size(92, 17);
@@ -812,7 +1054,7 @@ namespace Cppreception {
 			// label32
 			// 
 			this->label32->AutoSize = true;
-			this->label32->Location = System::Drawing::Point(368, 101);
+			this->label32->Location = System::Drawing::Point(422, 101);
 			this->label32->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label32->Name = L"label32";
 			this->label32->Size = System::Drawing::Size(100, 17);
@@ -822,7 +1064,7 @@ namespace Cppreception {
 			// label33
 			// 
 			this->label33->AutoSize = true;
-			this->label33->Location = System::Drawing::Point(368, 63);
+			this->label33->Location = System::Drawing::Point(422, 63);
 			this->label33->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label33->Name = L"label33";
 			this->label33->Size = System::Drawing::Size(52, 17);
@@ -832,7 +1074,7 @@ namespace Cppreception {
 			// txtbxClientStreet
 			// 
 			this->txtbxClientStreet->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxClientStreet->Location = System::Drawing::Point(472, 24);
+			this->txtbxClientStreet->Location = System::Drawing::Point(526, 24);
 			this->txtbxClientStreet->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxClientStreet->Name = L"txtbxClientStreet";
 			this->txtbxClientStreet->Size = System::Drawing::Size(143, 25);
@@ -841,7 +1083,7 @@ namespace Cppreception {
 			// label34
 			// 
 			this->label34->AutoSize = true;
-			this->label34->Location = System::Drawing::Point(368, 29);
+			this->label34->Location = System::Drawing::Point(422, 29);
 			this->label34->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label34->Name = L"label34";
 			this->label34->Size = System::Drawing::Size(40, 17);
@@ -851,7 +1093,7 @@ namespace Cppreception {
 			// txtbxClientPhone
 			// 
 			this->txtbxClientPhone->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxClientPhone->Location = System::Drawing::Point(471, 58);
+			this->txtbxClientPhone->Location = System::Drawing::Point(525, 58);
 			this->txtbxClientPhone->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxClientPhone->Name = L"txtbxClientPhone";
 			this->txtbxClientPhone->Size = System::Drawing::Size(143, 25);
@@ -860,7 +1102,7 @@ namespace Cppreception {
 			// label30
 			// 
 			this->label30->AutoSize = true;
-			this->label30->Location = System::Drawing::Point(107, 135);
+			this->label30->Location = System::Drawing::Point(161, 135);
 			this->label30->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label30->Name = L"label30";
 			this->label30->Size = System::Drawing::Size(54, 17);
@@ -870,7 +1112,7 @@ namespace Cppreception {
 			// txtbxClientEmail
 			// 
 			this->txtbxClientEmail->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxClientEmail->Location = System::Drawing::Point(188, 97);
+			this->txtbxClientEmail->Location = System::Drawing::Point(242, 97);
 			this->txtbxClientEmail->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxClientEmail->Name = L"txtbxClientEmail";
 			this->txtbxClientEmail->Size = System::Drawing::Size(143, 25);
@@ -879,7 +1121,7 @@ namespace Cppreception {
 			// label29
 			// 
 			this->label29->AutoSize = true;
-			this->label29->Location = System::Drawing::Point(107, 101);
+			this->label29->Location = System::Drawing::Point(161, 101);
 			this->label29->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label29->Name = L"label29";
 			this->label29->Size = System::Drawing::Size(45, 17);
@@ -889,7 +1131,7 @@ namespace Cppreception {
 			// txtbxClientSurname
 			// 
 			this->txtbxClientSurname->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxClientSurname->Location = System::Drawing::Point(188, 58);
+			this->txtbxClientSurname->Location = System::Drawing::Point(242, 58);
 			this->txtbxClientSurname->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxClientSurname->Name = L"txtbxClientSurname";
 			this->txtbxClientSurname->Size = System::Drawing::Size(143, 25);
@@ -898,7 +1140,7 @@ namespace Cppreception {
 			// label28
 			// 
 			this->label28->AutoSize = true;
-			this->label28->Location = System::Drawing::Point(107, 63);
+			this->label28->Location = System::Drawing::Point(161, 63);
 			this->label28->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label28->Name = L"label28";
 			this->label28->Size = System::Drawing::Size(71, 17);
@@ -908,7 +1150,7 @@ namespace Cppreception {
 			// txtbxClientName
 			// 
 			this->txtbxClientName->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->txtbxClientName->Location = System::Drawing::Point(188, 24);
+			this->txtbxClientName->Location = System::Drawing::Point(242, 24);
 			this->txtbxClientName->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxClientName->Name = L"txtbxClientName";
 			this->txtbxClientName->Size = System::Drawing::Size(143, 25);
@@ -917,7 +1159,7 @@ namespace Cppreception {
 			// label27
 			// 
 			this->label27->AutoSize = true;
-			this->label27->Location = System::Drawing::Point(107, 29);
+			this->label27->Location = System::Drawing::Point(161, 29);
 			this->label27->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label27->Name = L"label27";
 			this->label27->Size = System::Drawing::Size(35, 17);
@@ -927,12 +1169,13 @@ namespace Cppreception {
 			// dgvClients
 			// 
 			this->dgvClients->AllowUserToAddRows = false;
+			this->dgvClients->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dgvClients->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvClients->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgvClients->Location = System::Drawing::Point(4, 58);
 			this->dgvClients->Margin = System::Windows::Forms::Padding(4);
 			this->dgvClients->Name = L"dgvClients";
-			this->dgvClients->Size = System::Drawing::Size(836, 243);
+			this->dgvClients->Size = System::Drawing::Size(870, 243);
 			this->dgvClients->TabIndex = 3;
 			this->dgvClients->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvClients_CellClick);
 			// 
@@ -1002,7 +1245,7 @@ namespace Cppreception {
 			this->txtbxSerPerurname->Location = System::Drawing::Point(92, 192);
 			this->txtbxSerPerurname->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxSerPerurname->Name = L"txtbxSerPerurname";
-			this->txtbxSerPerurname->Size = System::Drawing::Size(324, 25);
+			this->txtbxSerPerurname->Size = System::Drawing::Size(332, 25);
 			this->txtbxSerPerurname->TabIndex = 13;
 			// 
 			// txtbxSerPerName
@@ -1011,7 +1254,7 @@ namespace Cppreception {
 			this->txtbxSerPerName->Location = System::Drawing::Point(92, 142);
 			this->txtbxSerPerName->Margin = System::Windows::Forms::Padding(4);
 			this->txtbxSerPerName->Name = L"txtbxSerPerName";
-			this->txtbxSerPerName->Size = System::Drawing::Size(324, 25);
+			this->txtbxSerPerName->Size = System::Drawing::Size(332, 25);
 			this->txtbxSerPerName->TabIndex = 12;
 			// 
 			// label25
@@ -1046,9 +1289,10 @@ namespace Cppreception {
 			// 
 			// dgvAddServices
 			// 
+			this->dgvAddServices->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dgvAddServices->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvAddServices->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvAddServices->Location = System::Drawing::Point(4, 262);
+			this->dgvAddServices->Location = System::Drawing::Point(12, 262);
 			this->dgvAddServices->Margin = System::Windows::Forms::Padding(4);
 			this->dgvAddServices->Name = L"dgvAddServices";
 			this->dgvAddServices->Size = System::Drawing::Size(412, 257);
@@ -1058,7 +1302,7 @@ namespace Cppreception {
 			// label22
 			// 
 			this->label22->AutoSize = true;
-			this->label22->Location = System::Drawing::Point(432, 242);
+			this->label22->Location = System::Drawing::Point(463, 242);
 			this->label22->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label22->Name = L"label22";
 			this->label22->Size = System::Drawing::Size(128, 17);
@@ -1067,9 +1311,10 @@ namespace Cppreception {
 			// 
 			// dgvSerPer
 			// 
+			this->dgvSerPer->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dgvSerPer->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvSerPer->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvSerPer->Location = System::Drawing::Point(436, 262);
+			this->dgvSerPer->Location = System::Drawing::Point(466, 262);
 			this->dgvSerPer->Margin = System::Windows::Forms::Padding(4);
 			this->dgvSerPer->Name = L"dgvSerPer";
 			this->dgvSerPer->Size = System::Drawing::Size(404, 257);
@@ -1079,7 +1324,7 @@ namespace Cppreception {
 			// label21
 			// 
 			this->label21->AutoSize = true;
-			this->label21->Location = System::Drawing::Point(432, 7);
+			this->label21->Location = System::Drawing::Point(463, 8);
 			this->label21->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label21->Name = L"label21";
 			this->label21->Size = System::Drawing::Size(88, 17);
@@ -1088,9 +1333,10 @@ namespace Cppreception {
 			// 
 			// dgvPersons
 			// 
+			this->dgvPersons->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dgvPersons->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvPersons->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvPersons->Location = System::Drawing::Point(436, 29);
+			this->dgvPersons->Location = System::Drawing::Point(466, 29);
 			this->dgvPersons->Margin = System::Windows::Forms::Padding(4);
 			this->dgvPersons->Name = L"dgvPersons";
 			this->dgvPersons->Size = System::Drawing::Size(408, 209);
@@ -1104,7 +1350,7 @@ namespace Cppreception {
 			this->btnSerPerSearch->FlatAppearance->BorderSize = 0;
 			this->btnSerPerSearch->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnSerPerSearch->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->btnSerPerSearch->Location = System::Drawing::Point(316, 28);
+			this->btnSerPerSearch->Location = System::Drawing::Point(324, 28);
 			this->btnSerPerSearch->Margin = System::Windows::Forms::Padding(4);
 			this->btnSerPerSearch->Name = L"btnSerPerSearch";
 			this->btnSerPerSearch->Size = System::Drawing::Size(100, 30);
@@ -1598,12 +1844,13 @@ namespace Cppreception {
 			// 
 			this->dgvUsers->AllowUserToAddRows = false;
 			this->dgvUsers->AllowUserToOrderColumns = true;
+			this->dgvUsers->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dgvUsers->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvUsers->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgvUsers->Location = System::Drawing::Point(428, 4);
 			this->dgvUsers->Margin = System::Windows::Forms::Padding(4);
 			this->dgvUsers->Name = L"dgvUsers";
-			this->dgvUsers->Size = System::Drawing::Size(412, 516);
+			this->dgvUsers->Size = System::Drawing::Size(446, 516);
 			this->dgvUsers->TabIndex = 0;
 			this->dgvUsers->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvUsers_CellClick);
 			// 
@@ -1775,12 +2022,13 @@ namespace Cppreception {
 			// dgvServices
 			// 
 			this->dgvServices->AllowUserToAddRows = false;
+			this->dgvServices->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dgvServices->BackgroundColor = System::Drawing::SystemColors::ButtonFace;
 			this->dgvServices->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgvServices->Location = System::Drawing::Point(408, 7);
 			this->dgvServices->Margin = System::Windows::Forms::Padding(4);
 			this->dgvServices->Name = L"dgvServices";
-			this->dgvServices->Size = System::Drawing::Size(428, 512);
+			this->dgvServices->Size = System::Drawing::Size(466, 512);
 			this->dgvServices->TabIndex = 3;
 			this->dgvServices->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Reception::DgvServices_CellClick);
 			// 
@@ -1840,7 +2088,7 @@ namespace Cppreception {
 			this->groupBox1->Controls->Add(this->label3);
 			this->groupBox1->Controls->Add(this->label2);
 			this->groupBox1->Controls->Add(this->label1);
-			this->groupBox1->Location = System::Drawing::Point(139, 108);
+			this->groupBox1->Location = System::Drawing::Point(168, 108);
 			this->groupBox1->Margin = System::Windows::Forms::Padding(4);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Padding = System::Windows::Forms::Padding(4);
@@ -1930,9 +2178,9 @@ namespace Cppreception {
 			// 
 			this->toolStrip1->BackColor = System::Drawing::Color::LightSeaGreen;
 			this->toolStrip1->ImageScalingSize = System::Drawing::Size(60, 60);
-			this->toolStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
-				this->toolStripButton4,
-					this->toolStripButton2, this->toolStripButton6, this->toolStripButton3, this->toolStripButton5, this->toolStripButton1
+			this->toolStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(7) {
+				this->toolStripButton7,
+					this->toolStripButton4, this->toolStripButton2, this->toolStripButton6, this->toolStripButton3, this->toolStripButton5, this->toolStripButton1
 			});
 			this->toolStrip1->Location = System::Drawing::Point(0, 0);
 			this->toolStrip1->MinimumSize = System::Drawing::Size(0, 104);
@@ -1940,6 +2188,19 @@ namespace Cppreception {
 			this->toolStrip1->Size = System::Drawing::Size(904, 104);
 			this->toolStrip1->TabIndex = 1;
 			this->toolStrip1->Text = L"toolStrip1";
+			// 
+			// toolStripButton7
+			// 
+			this->toolStripButton7->Font = (gcnew System::Drawing::Font(L"Arial", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->toolStripButton7->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->toolStripButton7->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton7.Image")));
+			this->toolStripButton7->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->toolStripButton7->Name = L"toolStripButton7";
+			this->toolStripButton7->Size = System::Drawing::Size(103, 101);
+			this->toolStripButton7->Text = L"Klienci - dziœ";
+			this->toolStripButton7->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageAboveText;
+			this->toolStripButton7->Click += gcnew System::EventHandler(this, &Reception::ToolStripButton7_Click);
 			// 
 			// toolStripButton4
 			// 
@@ -2042,6 +2303,10 @@ namespace Cppreception {
 			this->Text = L"Reception";
 			this->Load += gcnew System::EventHandler(this, &Reception::Reception_Load);
 			this->tabControl1->ResumeLayout(false);
+			this->ReservationToday->ResumeLayout(false);
+			this->groupBox3->ResumeLayout(false);
+			this->groupBox3->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationClientsToday))->EndInit();
 			this->ReservationTab->ResumeLayout(false);
 			this->ReservationTab->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvReservationEmployees))->EndInit();
@@ -2106,30 +2371,25 @@ private: System::Void BtnSavePassword_Click(System::Object^ sender, System::Even
 	MySqlConnection^ connect = gcnew MySqlConnection(this->config);
 	String^ queryString = "UPDATE user SET password = PASSWORD('" + this->textbxNewPassword->Text + "') WHERE user_id = " + this->ID + " AND password = PASSWORD('" + this->textbxOldPassword->Text + "');";
 	MySqlCommand^ query = gcnew MySqlCommand(queryString, connect);
-
 	try {
 		connect->Open();
 		if (query->ExecuteNonQuery()) {
 			MessageBox::Show("Zmiana has³a udana");
 			connect->Close();
-		}
-		else {
+		} else {
 			MessageBox::Show("B³¹d zmiany has³a");
 		}
-	}
-	catch (Exception^ e) {
+	} catch (Exception^ e) {
 		MessageBox::Show(e->Message);
 	}
 }
 private: System::Void BtnSearch_Click(System::Object^ sender, System::EventArgs^ e) {	
 	String^ queryString = "SELECT user_id AS ID, user_login AS login, name AS imie, surname AS nawisko, employee AS pracownik FROM user where concat(name, ' ', surname, user_login, employee) LIKE '%" + this->txtbxSearch->Text + "%' ORDER BY surname;";
 	this->refreshDataGrid(queryString, this->dgvUsers);
-	//this->dgvUsers->Columns[0]->Visible = false; // wy³¹czenie kolumny
-	
 }
 private: System::Void DgvUsers_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) { // CellClick na DataGridView
 	if (e->RowIndex >= 0) {
-		this->recordId = Convert::ToInt32(this->dgvUsers->Rows[e->RowIndex]->Cells[0]->Value);
+		this->recordId = Convert::ToInt16(this->dgvUsers->Rows[e->RowIndex]->Cells[0]->Value);
 		this->txtbxEmployeeName->Text = this->dgvUsers->Rows[e->RowIndex]->Cells["imie"]->Value->ToString();
 		this->txtbxEmployeeSurname->Text = this->dgvUsers->Rows[e->RowIndex]->Cells["nawisko"]->Value->ToString();
 		this->txtbxEmployeeLogin->Text = this->dgvUsers->Rows[e->RowIndex]->Cells["login"]->Value->ToString();
@@ -2166,8 +2426,7 @@ private: System::Void DgvUsers_CellClick(System::Object^ sender, System::Windows
 
 				}
 				connect->Close();
-			}
-			catch (Exception^ e) {
+			} catch (Exception^ e) {
 				MessageBox::Show(e->Message);
 			}
 		}
@@ -2204,17 +2463,31 @@ private: Void refreshDataGrid(String^ queryString, System::Windows::Forms::DataG
 	} catch (Exception^ e) {
 		MessageBox::Show(e->Message);
 	}
+	//grid->Columns[0]->Visible = false;
+}
+private: Boolean addUpdateRemoveEmployeeStatus() {
+	return this->txtbxEmployeeName->Text->Length < 3 ||
+		this->txtbxEmployeeSurname->Text->Length < 4 ||
+		this->txtbxEmployeeLogin->Text->Length <= 2;
+}
+private: Boolean addUpdateRemoveServicesStatus() {
+	return this->txtbxServiceName->Text->Length < 3 ||
+		this->txtbxServicePrice->Text->Length < 1 ||
+		this->txtbxServiceTime->Text->Length < 5;
+}
+private: Boolean addUpdateRemoveClientsStatus() {
+	return this->txtbxClientName->Text->Length < 3 ||
+		this->txtbxClientSurname->Text->Length < 1;
+}
+private: Boolean addUpdateRemoveReservationsStatus(ActionType type) {
+	return (this->clientId <= 0 ||
+		this->serviceId <= 0 ||
+		this->employeeId <= 0 ||
+		this->txtbxReservationSeTime->Text->Length < 10) && type != ActionType::DELETE;
 }
 private: Void addUpdateRemoveEmployeeTransaction(String^ queryString, ActionType queryType) {
-	if (this->txtbxEmployeeName->Text->Length < 3 ||
-		this->txtbxEmployeeSurname->Text->Length < 4 ||
-		this->txtbxEmployeeLogin->Text->Length <= 2
-		) MessageBox::Show("Uzupe³nij dane!");
+	if (this->addUpdateRemoveEmployeeStatus()) MessageBox::Show("Uzupe³nij dane!");
 	else {
-		/*
-		if (this->chbxEmployee->Checked) this->employeeType = 1;
-		else this->employeeType = 0;
-		*/
 		MySqlConnection^ connect = gcnew MySqlConnection(this->config);
 		MySqlCommand^ query = connect->CreateCommand();
 		MySqlTransaction^ transaction;
@@ -2252,7 +2525,6 @@ private: Void addUpdateRemoveEmployeeTransaction(String^ queryString, ActionType
 						queryStringExtra = queryStringExtra = "UPDATE hours SET monday_from = '" + this->txtbxMondayFrom->Text + "',  monday_to = '" + this->txtbxMondayTo->Text + "', tuesday_from = '" + this->txtbxTuesdayFrom->Text + "', tuesday_to = '" + this->txtbxTuesdayTo->Text + "', wednesday_from = '" + this->txtbxWednesdaysFrom->Text + "', wednesday_to = '" + this->txtbxWednesdaysTo->Text + "', thursday_from = '" + this->txtbxThursdayFrom->Text + "', thursday_to = '" + this->txtbxThursdayTo->Text + "', friday_from = '" + this->txtbxFridayFrom->Text + "', friday_to = '" + this->txtbxFridayTo->Text + "', saturday_from = '" + this->txtbxSaturdayFrom->Text + "', saturday_to = '" + this->txtbxSaturdayTo->Text + "' WHERE user_id = " + this->recordId + ";";
 						query->CommandText = queryStringExtra;
 					} else if(hasRows == false && this->chbxEmployee->Checked) {
-						MessageBox::Show("DWA");
 						queryStringExtra = "INSERT INTO hours SET user_id = " + this->recordId + ", monday_from = '" + this->txtbxMondayFrom->Text + "',  monday_to = '" + this->txtbxMondayTo->Text + "', tuesday_from = '" + this->txtbxTuesdayFrom->Text + "', tuesday_to = '" + this->txtbxTuesdayTo->Text + "', wednesday_from = '" + this->txtbxWednesdaysFrom->Text + "', wednesday_to = '" + this->txtbxWednesdaysTo->Text + "', thursday_from = '" + this->txtbxThursdayFrom->Text + "', thursday_to = '" + this->txtbxThursdayTo->Text + "', friday_from = '" + this->txtbxFridayFrom->Text + "', friday_to = '" + this->txtbxThursdayTo->Text + "', saturday_from = '" + this->txtbxSaturdayFrom->Text + "', saturday_to = '" + this->txtbxThursdayTo->Text + "';";
 						query->CommandText = queryStringExtra;
 					}
@@ -2280,8 +2552,7 @@ private: Void addUpdateRemoveEmployeeTransaction(String^ queryString, ActionType
 					break;
 			}
 			transaction->Commit();
-		}
-		catch (Exception^ e) {
+		} catch (Exception^ e) {
 			MessageBox::Show(e->Message);
 			transaction->Rollback();
 		}
@@ -2314,8 +2585,7 @@ private: System::Void CheckBox1_CheckedChanged(System::Object^ sender, System::E
 	if (this->chbxEmployee->Checked) {
 		this->employeeType = 1;
 		this->grbxHours->Visible = true;
-	}
-	else {
+	} else {
 		this->grbxHours->Visible = false;
 		this->employeeType = 0;
 	}
@@ -2365,10 +2635,7 @@ private: System::Void BtnServiceAdd_Click(System::Object^ sender, System::EventA
 }
 
 private: Void addUpdateRemoveServicesTransaction(String^ queryString, ActionType queryType) {
-	if (this->txtbxServiceName->Text->Length < 3 ||
-		this->txtbxServicePrice->Text->Length < 1 ||
-		this->txtbxServiceTime->Text->Length < 5
-		) MessageBox::Show("Uzupe³nij dane!");
+	if (this->addUpdateRemoveServicesStatus()) MessageBox::Show("Uzupe³nij dane!");
 	else {
 		MySqlConnection^ connect = gcnew MySqlConnection(this->config);
 		MySqlCommand^ query = connect->CreateCommand();
@@ -2402,8 +2669,7 @@ private: Void addUpdateRemoveServicesTransaction(String^ queryString, ActionType
 				break;
 			}
 			transaction->Commit();
-		}
-		catch (Exception^ e) {
+		} catch (Exception^ e) {
 			MessageBox::Show(e->Message);
 			transaction->Rollback();
 		}
@@ -2416,7 +2682,6 @@ private: Void addUpdateRemoveServicesTransaction(String^ queryString, ActionType
 }
 private: System::Void DgvServices_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	// Wybranie us³ugi z pola
-	/**/
 	if (e->RowIndex >= 0) {
 		this->recordId = Convert::ToInt32(this->dgvServices->Rows[e->RowIndex]->Cells[0]->Value);
 		this->txtbxServiceName->Text = this->dgvServices->Rows[e->RowIndex]->Cells["name"]->Value->ToString();
@@ -2427,7 +2692,6 @@ private: System::Void DgvServices_CellClick(System::Object^ sender, System::Wind
 		this->btnServiceModify->Enabled = true;
 		this->btnServiceDelete->Enabled = true;
 	}
-	// */
 	this->btnServiceModify->Enabled = true;
 	this->btnServiceDelete->Enabled = true;
 }
@@ -2466,7 +2730,6 @@ private: Void operationOnDataGridCellClick(
 	) {
 	if (e->RowIndex >= 0) {
 		this->serviceId = Convert::ToInt32(grid->Rows[e->RowIndex]->Cells[0]->Value);
-
 		if (MessageBox::Show(
 			messageBoxContent,
 			messageBoxHeader,
@@ -2502,8 +2765,7 @@ private: Void addOrRemovePersonServices(String^ queryString) {
 		query->ExecuteNonQuery();
 		MySqlDataReader^ result;
 		transaction->Commit();
-	}
-	catch (Exception^ e) {
+	} catch (Exception^ e) {
 		MessageBox::Show(e->Message);
 		transaction->Rollback();
 	}
@@ -2517,9 +2779,7 @@ private: System::Void DgvSerPer_CellClick(System::Object^ sender, System::Window
 }
 
 private: Void addRemoveModifyClients(String^ queryString, ActionType type) {
-	if (this->txtbxClientName->Text->Length < 3 ||
-		this->txtbxClientSurname->Text->Length < 1
-		) MessageBox::Show("Uzupe³nij dane!");
+	if (this->addUpdateRemoveClientsStatus()) MessageBox::Show("Uzupe³nij dane!");
 	else {
 		MySqlConnection^ connect = gcnew MySqlConnection(this->config);
 		MySqlCommand^ query = connect->CreateCommand();
@@ -2552,8 +2812,7 @@ private: Void addRemoveModifyClients(String^ queryString, ActionType type) {
 			default:
 				break;
 			}
-		}
-		catch (Exception^ e) {
+		} catch (Exception^ e) {
 			MessageBox::Show(e->Message);
 			transaction->Rollback();
 		}
@@ -2636,39 +2895,37 @@ private: Void showTermins() {
 	String^ service = "";
 	DateTime^ dayOfWeek = Convert::ToDateTime(this->choosenDate);
 	this->gbReservationHours->Controls->Clear();
-	if (this->recordId >= 0) {
-		this->employeeId = Convert::ToInt16(this->dgvReservationEmployees->Rows[this->recordId]->Cells[0]->Value);
-	}
+	if (this->recordId >= 0) this->employeeId = Convert::ToInt16(this->dgvReservationEmployees->Rows[this->recordId]->Cells[0]->Value);
 	int day = Convert::ToInt16(dayOfWeek->DayOfWeek), hourStart, hourStop;
 	switch (day) {
-	case 0:
-		MessageBox::Show("Niedziela jest dniem wolnym od pracy, zostaniesz przeniesiony na wybór na Poniedzia³ek");
-	case 1:
-		workFrom = "monday_from";
-		workTo = "monday_to";
-		break;
-	case 2:
-		workFrom = "tuesday_from";
-		workTo = "tuesday_to";
-		break;
-	case 3:
-		workFrom = "wednesday_from";
-		workTo = "wednesday_to";
-		break;
-	case 4:
-		workFrom = "thursday_from";
-		workTo = "thursday_to";
-		break;
-	case 5:
-		workFrom = "friday_from";
-		workTo = "friday_to";
-		break;
-	case 6:
-		workFrom = "saturday_from";
-		workTo = "saturday_to";
-		break;
-	default:
-		break;
+		case 0:
+			MessageBox::Show("Niedziela jest dniem wolnym od pracy, zostaniesz przeniesiony na wybór na Poniedzia³ek");
+		case 1:
+			workFrom = "monday_from";
+			workTo = "monday_to";
+			break;
+		case 2:
+			workFrom = "tuesday_from";
+			workTo = "tuesday_to";
+			break;
+		case 3:
+			workFrom = "wednesday_from";
+			workTo = "wednesday_to";
+			break;
+		case 4:
+			workFrom = "thursday_from";
+			workTo = "thursday_to";
+			break;
+		case 5:
+			workFrom = "friday_from";
+			workTo = "friday_to";
+			break;
+		case 6:
+			workFrom = "saturday_from";
+			workTo = "saturday_to";
+			break;
+		default:
+			break;
 	}
 	String^ queryString = "SELECT date_format(" + workFrom + ", '%H') AS godzina_start, date_format(" + workTo + ", '%H') AS godzina_stop From hours WHERE user_id = " + this->employeeId + "";
 	MySqlConnection^ connect = gcnew MySqlConnection(this->config);
@@ -2684,7 +2941,7 @@ private: Void showTermins() {
 	connect->Close();
 	int counter = 0;
 
-	for (int i = hourStart; i < hourStop; i++) {
+	for (int i = hourStart; i <= hourStop; i++) {
 		for (int j = 0; j < 60; j += 30) {
 			time = this->choosenDate + " " + i + ":" + j + ":00";
 			DateTime hour = Convert::ToDateTime(time);
@@ -2700,7 +2957,6 @@ private: Void showTermins() {
 				txbxHours->BackColor = System::Drawing::Color::Red;
 				client = data->GetString("nazwisko");
 				service = data->GetString("nazwa");
-				MessageBox::Show("" + data->GetString("visitId"));
 				txbxHours->Tag = data->GetString("visitId");
 			} else {
 				service = "";
@@ -2711,7 +2967,7 @@ private: Void showTermins() {
 			txbxHours->Width = 120;
 			txbxHours->Text = String::Format(hour.ToShortTimeString()) + " " + service + " " + client;
 			txbxHours->Click += gcnew System::EventHandler(this, &Reception::HourFieldClick);
-			txbxHours->Location = System::Drawing::Point(10, 25 * counter);
+			txbxHours->Location = System::Drawing::Point(10, 27 * counter);
 			counter++;
 		}
 	}
@@ -2758,47 +3014,45 @@ private: System::Void BtnReservationModify_Click(System::Object^ sender, System:
 	this->addModifyDeleteReservation(queryString, ActionType::UPDATE);
 }
 private: Void addModifyDeleteReservation(String^ queryString, ActionType type) {
-	if ((this->clientId <= 0 ||
-		this->serviceId <= 0 ||
-		this->employeeId <= 0 ||
-		this->txtbxReservationSeTime->Text->Length < 14) && type != ActionType::DELETE
-		) MessageBox::Show("Uzupe³nij dane!");
+	if (this->addUpdateRemoveReservationsStatus(type)) MessageBox::Show("Uzupe³nij dane!");
 	else {
-		MySqlConnection^ connect = gcnew MySqlConnection(this->config);
-		MySqlCommand^ query = connect->CreateCommand();
-		MySqlTransaction^ transaction;
-		connect->Open();
-		transaction = connect->BeginTransaction(IsolationLevel::ReadCommitted);
-		query->Connection = connect;
-		query->Transaction = transaction;
-		try {
-			query->CommandText = queryString;
-			query->ExecuteNonQuery();
-			transaction->Commit();
-			switch (type) {
-			case ActionType::ADD:
-				MessageBox::Show("Rezerwacja udana!");
-				break;
-			case ActionType::UPDATE:
-				MessageBox::Show("Modyfikacja udana!");
-				break;
-			case ActionType::DELETE:
-				MessageBox::Show("Usuniêto poprawnie");
-				break;
-			}
-		}
-		catch (Exception^ e) {
-			MessageBox::Show(e->Message);
-			transaction->Rollback();
-		}
-		connect->Close();
+		this->reservationAddUpdateDeleteQuery(queryString, type);
 		this->showTermins();
 	}
+}
+private: Void reservationAddUpdateDeleteQuery(String^ queryString, ActionType type) {
+	MySqlConnection^ connect = gcnew MySqlConnection(this->config);
+	MySqlCommand^ query = connect->CreateCommand();
+	MySqlTransaction^ transaction;
+	connect->Open();
+	transaction = connect->BeginTransaction(IsolationLevel::ReadCommitted);
+	query->Connection = connect;
+	query->Transaction = transaction;
+	try {
+		query->CommandText = queryString;
+		query->ExecuteNonQuery();
+		transaction->Commit();
+		switch (type) {
+		case ActionType::ADD:
+			MessageBox::Show("Rezerwacja udana!");
+			break;
+		case ActionType::UPDATE:
+			MessageBox::Show("Modyfikacja udana!");
+			break;
+		case ActionType::DELETE:
+			MessageBox::Show("Usuniêto poprawnie");
+			break;
+		}
+	}
+	catch (Exception^ e) {
+		MessageBox::Show(e->Message);
+		transaction->Rollback();
+	}
+	connect->Close();
 }
 private: System::Void BtnReservationDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ queryString = "DELETE FROM visits WHERE visit_id = " + this->visitId + ";";
 	if (MessageBox::Show("Jesteœ pewien, ¿e chcesz usun¹æ dan¹ rezerwacjê?", "UWAGA!!!", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) this->addModifyDeleteReservation(queryString, ActionType::DELETE);
-
 }
 private: System::Void ToolStripButton4_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->tabControl1->SelectedTab = this->ReservationTab;
@@ -2808,7 +3062,6 @@ private: System::Void ToolStripButton2_Click(System::Object^ sender, System::Eve
 }
 private: System::Void ToolStripButton6_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->tabControl1->SelectedTab = this->EmployeeServiceTab;
-
 }
 private: System::Void ToolStripButton3_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->tabControl1->SelectedTab = this->EmployeeTab;
@@ -2818,6 +3071,57 @@ private: System::Void ToolStripButton5_Click(System::Object^ sender, System::Eve
 }
 private: System::Void ToolStripButton1_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->tabControl1->SelectedTab = this->PasswordTab;
+}
+private: System::Void DgvReservationClientsToday_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (e->RowIndex >= 0) {
+		this->visitId = Convert::ToInt16(this->dgvReservationClientsToday->Rows[e->RowIndex]->Cells["visit_id"]->Value);
+		this->reservationTodayPerson->Text = this->dgvReservationClientsToday->Rows[e->RowIndex]->Cells["Klient"]->Value->ToString();
+		this->reservationTodayEmployee->Text = this->dgvReservationClientsToday->Rows[e->RowIndex]->Cells["Pracownik"]->Value->ToString();
+		this->reservationTodayHour->Text = this->dgvReservationClientsToday->Rows[e->RowIndex]->Cells["reservation_from"]->Value->ToString();
+		this->reservationTodayService->Text = this->dgvReservationClientsToday->Rows[e->RowIndex]->Cells["name"]->Value->ToString();
+
+		this->btnTodayReservationsReady->Enabled = true;
+		this->btnTodayReservationsDeclined->Enabled = true;
+	}
+}
+private: System::Void Button6_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->refreshTodayDataGridView();
+}
+private: Void refreshTodayDataGridView() {
+	DateTime time = DateTime::Now;
+	DateTime localDate = Convert::ToDateTime(time);
+	String^ queryString = "SELECT `visits`.`visit_id`, concat(`clients`.`name`, ' ', `clients`.`surname`) AS Klient, concat(`user`.`name`, ' ', `user`.`surname`) AS Pracownik, `services`.`name`, `visits`.`reservation_from`, `visits`.`status` FROM visits, services, user, clients WHERE `visits`.`reservation_from` LIKE '%" + localDate.ToString("o")->Substring(0, 10) + "%' AND `visits`.`user_id` = `user`.`user_id` AND `visits`.`client_id` = `clients`.`client_id` AND `visits`.`services_id` = `services`.`services_id` ORDER BY `visits`.`reservation_from`;";
+	this->refreshDataGrid(queryString, this->dgvReservationClientsToday);
+}
+private: System::Void BtnTodayReservationsReady_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryString = "UPDATE visits SET status = 'ready' WHERE visit_id = " + this->visitId + ";";
+	this->reservationAddUpdateDeleteQuery(queryString, ActionType::UPDATE);
+
+	this->removeDoneVisits();
+}
+private: Void removeDoneVisits() {
+	String^ queryString = "DELETE FROM visits WHERE visit_id = " + this->visitId + ";";
+	if (MessageBox::Show("Czy chcesz usun¹æ klienta po zmianie statusu?", "Uwaga", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) this->reservationAddUpdateDeleteQuery(queryString, ActionType::DELETE);
+	this->refreshTodayDataGridView();
+}
+private: System::Void BtnTodayReservationsDeclined_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ queryString = "UPDATE visits SET status = 'resignation' WHERE visit_id = " + this->visitId + ";";
+	this->reservationAddUpdateDeleteQuery(queryString, ActionType::UPDATE);
+
+	this->refreshTodayDataGridView();
+	this->removeDoneVisits();
+}
+private: System::Void BtnReservationClientsTommorow_Click(System::Object^ sender, System::EventArgs^ e) {
+	DateTime time = DateTime::Now;
+	time = time.AddDays(1);
+	DateTime localDate = Convert::ToDateTime(time);
+	String^ queryString = "SELECT `visits`.`visit_id`, concat(`clients`.`name`, ' ', `clients`.`surname`) AS Klient, concat(`user`.`name`, ' ', `user`.`surname`) AS Pracownik, `services`.`name`, `visits`.`reservation_from`, `visits`.`status` FROM visits, services, user, clients WHERE `visits`.`reservation_from` LIKE '%" + localDate.ToString("o")->Substring(0, 10) + "%' AND `visits`.`user_id` = `user`.`user_id` AND `visits`.`client_id` = `clients`.`client_id` AND `visits`.`services_id` = `services`.`services_id` ORDER BY `visits`.`reservation_from`;";
+	this->refreshDataGrid(queryString, this->dgvReservationClientsToday);
+	this->btnTodayReservationsReady->Enabled = false;
+	this->btnTodayReservationsDeclined->Enabled = false;
+}
+private: System::Void ToolStripButton7_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->tabControl1->SelectedTab = this->ReservationToday;
 }
 };
 }
